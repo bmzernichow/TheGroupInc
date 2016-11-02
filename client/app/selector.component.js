@@ -9,18 +9,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var AppComponent = (function () {
-    function AppComponent() {
-        this.title = 'My App Component in Angular';
+var SelectorComponent = (function () {
+    function SelectorComponent() {
     }
-    AppComponent = __decorate([
+    SelectorComponent = __decorate([
         core_1.Component({
-            selector: 'my-app',
-            template: "\n\t\t<h1>{{title}}</h1>\n\t\t<my-selector></my-selector>\n\t\t<my-statres></my-statres>\n\t\t<my-pretab></my-pretab>\n\t"
+            moduleId: module.id,
+            selector: 'my-selector',
+            //template: '<h2>My Selector in Angular</h2>',
+            templateUrl: 'selector.component.html',
         }), 
         __metadata('design:paramtypes', [])
-    ], AppComponent);
-    return AppComponent;
+    ], SelectorComponent);
+    return SelectorComponent;
 }());
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+exports.SelectorComponent = SelectorComponent;
+//# sourceMappingURL=selector.component.js.map

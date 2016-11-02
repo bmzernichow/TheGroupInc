@@ -1,0 +1,1 @@
+{"version":3,"file":"pretab.component.js","sourceRoot":"","sources":["pretab.component.ts"],"names":[],"mappings":";;;;;;;;;;AAAA,qBAA0B,eAAe,CAAC,CAAA;AAO1C;IAAA;IAA+B,CAAC;IANhC;QAAC,gBAAS,CAAC;YACV,QAAQ,EAAE,MAAM,CAAC,EAAE;YAClB,QAAQ,EAAE,WAAW;YACrB,4CAA4C;YAC5C,WAAW,EAAE,uBAAuB;SACrC,CAAC;;uBAAA;IAC6B,sBAAC;AAAD,CAAC,AAAhC,IAAgC;AAAnB,uBAAe,kBAAI,CAAA"}

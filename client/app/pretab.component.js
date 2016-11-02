@@ -9,18 +9,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var AppComponent = (function () {
-    function AppComponent() {
-        this.title = 'My App Component in Angular';
+var PreTabComponent = (function () {
+    function PreTabComponent() {
     }
-    AppComponent = __decorate([
+    PreTabComponent = __decorate([
         core_1.Component({
-            selector: 'my-app',
-            template: "\n\t\t<h1>{{title}}</h1>\n\t\t<my-selector></my-selector>\n\t\t<my-statres></my-statres>\n\t\t<my-pretab></my-pretab>\n\t"
+            moduleId: module.id,
+            selector: 'my-pretab',
+            //template: '<h2>My PreTab in Angular</h2>',
+            templateUrl: 'pretab.component.html',
         }), 
         __metadata('design:paramtypes', [])
-    ], AppComponent);
-    return AppComponent;
+    ], PreTabComponent);
+    return PreTabComponent;
 }());
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+exports.PreTabComponent = PreTabComponent;
+//# sourceMappingURL=pretab.component.js.map
