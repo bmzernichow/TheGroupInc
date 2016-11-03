@@ -2,7 +2,7 @@ import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent }   from './app.component';
-import { SelectorComponent } from './selector.component';
+import { SidenavComponent } from './sidenav.component';
 import { StatResComponent } from './statres.component';
 import { PreTabComponent } from './pretab.component';
 
@@ -11,7 +11,7 @@ import { PreTabComponent } from './pretab.component';
 	imports:      [ BrowserModule ],
 	declarations: [
 		AppComponent,
-		SelectorComponent,
+		SidenavComponent,
 		StatResComponent,
 		PreTabComponent,
 	],

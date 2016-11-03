@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 	selector: 'my-app',
 	template: `
 		<h1>{{title}}</h1>
-		<my-selector></my-selector>
+		<my-sidenav></my-sidenav>
 		<my-statres></my-statres>
 		<my-pretab></my-pretab>
 	`

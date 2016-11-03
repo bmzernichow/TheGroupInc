@@ -9,19 +9,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var SelectorComponent = (function () {
-    function SelectorComponent() {
+var SidenavComponent = (function () {
+    function SidenavComponent() {
     }
-    SelectorComponent = __decorate([
+    SidenavComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
-            selector: 'my-selector',
-            //template: '<h2>My Selector in Angular</h2>',
-            templateUrl: 'selector.component.html',
+            selector: 'my-sidenav',
+            //template: '<h2>My Sidenav in Angular</h2>',
+            templateUrl: 'sidenav.component.html',
         }), 
         __metadata('design:paramtypes', [])
-    ], SelectorComponent);
-    return SelectorComponent;
+    ], SidenavComponent);
+    return SidenavComponent;
 }());
-exports.SelectorComponent = SelectorComponent;
-//# sourceMappingURL=selector.component.js.map
+exports.SidenavComponent = SidenavComponent;
+//# sourceMappingURL=sidenav.component.js.map
