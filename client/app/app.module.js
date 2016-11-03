@@ -10,7 +10,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var platform_browser_1 = require('@angular/platform-browser');
+var app_routing_module_1 = require('./app-routing.module');
 var app_component_1 = require('./app.component');
+var home_component_1 = require('./home.component');
 var sidenav_component_1 = require('./sidenav.component');
 var statres_component_1 = require('./statres.component');
 var pretab_component_1 = require('./pretab.component');
@@ -19,9 +21,13 @@ var AppModule = (function () {
     }
     AppModule = __decorate([
         core_1.NgModule({
-            imports: [platform_browser_1.BrowserModule],
+            imports: [
+                platform_browser_1.BrowserModule,
+                app_routing_module_1.AppRoutingModule,
+            ],
             declarations: [
                 app_component_1.AppComponent,
+                home_component_1.HomeComponent,
                 sidenav_component_1.SidenavComponent,
                 statres_component_1.StatResComponent,
                 pretab_component_1.PreTabComponent,
