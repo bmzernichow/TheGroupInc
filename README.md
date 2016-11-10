@@ -1,12 +1,19 @@
 # Frontend Angular 2 webapp
 Includes components lookup search, data table and chart.
 
-Installation/ running the app:
+## Prerequisites
+Node/ npm
 
-1. Download project to your own computer
+## Installation/ running the app
 
-2. Install cli for angular 2: 
+- Download project to your own computer
+
+- Install cli for angular 2: 
+```
 npm install -g angular-cli
+```
 
-3. In cmd type (fron current 'webapp' directory:
+- In cmd type (fron current 'webapp' directory:
+```
 ng serve
+```
