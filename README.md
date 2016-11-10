@@ -4,7 +4,7 @@ Includes components lookup search, data table and chart.
 ## Prerequisites
 Node/ npm
 
-## Installation/ running the app
+## Installation/ running
 
 - Download project to your own computer
 
@@ -13,7 +13,7 @@ Node/ npm
 npm install -g angular-cli
 ```
 
-- In cmd type (fron current 'webapp' directory:
+- In cmd type (from current 'webapp' directory):
 ```
 ng serve
 ```
