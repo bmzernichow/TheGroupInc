@@ -5,4 +5,15 @@ import { Component } from '@angular/core';
   //template: '<h2>My StatRes in Angular</h2>',
   templateUrl: 'statres.component.html',
 })
-export class StatResComponent { }
+export class StatResComponent {
+	SUM = "Teststring 1";
+	MIN = "Teststring 2";
+	MAX = "Teststring 3";
+	STDEV = "Teststring 4";
+	COUNT = "Teststring 5";
+
+	save(): void{
+		// stub
+		console.log("save pressed!");
+	}
+}

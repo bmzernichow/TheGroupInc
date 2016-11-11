@@ -1,4 +1,43 @@
-<h3>My StatRes in Angular</h3>
+<h2>STATISTICS RESULTS</h2>
+
+<div style="width:500px;height:250px;margin-top:20px;margin-bottom:20px;border:2px solid #bbb;">
+
+	<h3 style="margin-left:10px;">Full summary</h3>
+
+	<table style="text-align:left;margin-left:10px;">
+		<tr>
+			<td>SUM:</td>
+			<td>{{SUM}}</td>
+		</tr>
+		<tr>
+			<td>MIN:</td>
+			<td>{{MIN}}</td>
+		</tr>
+		<tr>
+			<td>MAX:</td>
+			<td>{{MAX}}</td>
+		</tr>
+		<tr>
+			<td>STDEV:</td>
+			<td>{{STDEV}}</td>
+		</tr>
+		<tr>
+			<td>COUNT:</td>
+			<td>{{COUNT}}</td>
+		</tr>
+	</table>
+<!-- 
+	<nav style="text-align:right;margin-right:10px;margin-bottom:10px">
+		<a> Save button </a>
+	</nav> -->
+
+	<button (click)="save()">
+		Save statistics
+	</button>
+
+</div>
+
+
 <nav>
 	<a routerLink="/pretab" routerLinkActive="active">Next</a>
 </nav>
