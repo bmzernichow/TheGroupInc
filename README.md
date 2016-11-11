@@ -1,3 +1,19 @@
-# DHIS2 Statistical
+# Frontend Angular 2 webapp
+Includes components lookup search, data table and chart.
 
-Web app for DHIS2 statistical functionality. A group project at UiO - INF5750 - by The Group Inc.
+## Prerequisites
+Node/ npm
+
+## Installation/ running
+
+- Download project to your own computer
+
+- Install cli for angular 2: 
+```
+npm install -g angular-cli
+```
+
+- In cmd type (from current 'webapp' directory):
+```
+ng serve
+```
