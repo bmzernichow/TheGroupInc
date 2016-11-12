@@ -1,12 +1,12 @@
 import {Component} from '@angular/core';
-import {Http, Response, Headers} from '@angular/http';
+import {LookupService} from './lookup.service'
 import {Observable} from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
 
 @Component({
   selector: 'lookup',
   templateUrl: './lookup.component.html',
-  styleUrls: ['./lookup.component.css']
+  styleUrls: ['./lookup.component.css'],
+  providers: [LookupService]
 })
 
 export class LookupComponent {
@@ -14,20 +14,20 @@ export class LookupComponent {
   value: string = '';
   orgUnit = '';
 
-  constructor(private http: Http) {}
+  constructor(private lookupService: LookupService) {}
 
   // Lookup async function for organisation units
   lookupAsync = (query: string): Observable<any[]> => {
-    if (!query) {
-      return null;
-    }
-
-    var headers = new Headers();
-    headers.append('Authorization', "Basic " + btoa("admin:district"));
-
-    return this.http.get(`https://play.dhis2.org/test/api/organisationUnits.json?paging=false&filter=displayName:ilike:${query}`, {headers: headers})
-      .map((res: Response) => res.json())
-      .map((response: any) => response.organisationUnits);
-    
+    return this.lookupService.getLookupAsync(query); 
   }
+
+  runClick() {
+    console.log(typeof(this.orgUnit));
+    for (let key of Object.keys(this.orgUnit)) {  
+      let value = this.orgUnit[key];
+      if (key == 'id') {
+          console.log(value);
+    }
+}
+}
 }
