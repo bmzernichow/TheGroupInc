@@ -13,7 +13,6 @@
     </ngl-lookup>
     <div *ngIf="orgUnit" class="slds-m-top--large">Selected unit: <b>{{orgUnit.displayName}}</b></div>
     <div class="slds-text-title--caps slds-m-top--x-large slds-m-bottom--small"></div>
-    <button (click)="runClick()">Click</button>
   </div>
 
     <div class="indicator">
@@ -27,9 +26,8 @@
         </div>
       </template>
     </ngl-lookup>
-    <div *ngIf="orgUnit" class="slds-m-top--large">Selected indicator: <b>{{orgUnit.id}}</b></div>
+    <div *ngIf="orgUnit" class="slds-m-top--large">Selected indicator: <b>{{indicator.displayName}}</b></div>
     <div class="slds-text-title--caps slds-m-top--x-large slds-m-bottom--small"></div>
-    <button (click)="runClick()">Click</button>
   </div>
 
 </body>

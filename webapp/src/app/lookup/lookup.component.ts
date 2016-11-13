@@ -23,20 +23,9 @@ export class LookupComponent {
     return this.lookupService.getLookupUnit(query); 
   }
 
+  // Lookup async function for indicators
   lookupIndicator = (query: string): Observable<any[]> => {
     return this.lookupService.getLookupIndicator(query); 
   }
-
-
-  runClick() {
-    console.log(typeof(this.orgUnit));
-    for (let key of Object.keys(this.orgUnit)) {  
-      let value = this.orgUnit[key];
-      if (key == 'id') {
-          console.log(value);
-    }
-  }
-}
-
 
 }

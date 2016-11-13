@@ -26,9 +26,9 @@ export class LookupService {
     if (!query) {
       return null;
     }
-    return this.http.get(`https://play.dhis2.org/test/api/organisationUnits.json?paging=false&filter=displayName:ilike:${query}`, {headers: headers})
+    return this.http.get(`https://play.dhis2.org/test/api/indicators.json?paging=false&filter=displayName:ilike:${query}`, {headers: headers})
                       .map((res: Response) => res.json())
-                      .map((response: any) => response.organisationUnits);
+                      .map((response: any) => response.indicators);
   }
 
 }
