@@ -30,4 +30,32 @@
     <div class="slds-text-title--caps slds-m-top--x-large slds-m-bottom--small"></div>
   </div>
 
+  <div class="period">
+    <span nglDropdown [(open)]="open">
+  <button class="slds-button slds-button--neutral" nglDropdownTrigger>
+    <span class="slds-truncate">Select a period</span>
+    <ngl-icon icon="down" type="default" size="x-small"></ngl-icon>
+  </button>
+    <div class="slds-dropdown slds-dropdown--left">
+      <ul class="dropdown__list" role="menu">
+        <li class="slds-dropdown__item" *ngFor="let item of items;">
+          <a role="menuitem" nglDropdownItem (click)="period = item.value; open = false;">
+            <p class="slds-truncate">{{item.value}}</p>
+            <ngl-icon [icon]="item.icon" type="default" size="x-small"></ngl-icon>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </span>
+  <div *ngIf="period" class="slds-m-top--large">You selected: <b>{{period}}</b></div>
+  </div>
+  
+  <div class="getStats">
+      <button type="button" (click)=getStatistics() nglButton="brand">Get statistics</button>
+  </div>
+
+  <div class="getTest">
+      <button type="button" (click)=getTest() nglButton="brand">Get test</button>
+  </div>
+
 </body>

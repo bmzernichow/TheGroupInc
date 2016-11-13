@@ -12,9 +12,12 @@ const DATA = [
 @Component({
   selector: 'datatable',
   templateUrl: './table.component.html',
-  styleUrls: ['./table.component.css']
+  styleUrls: ['./table.component.css'],
 })
+
 export class TableComponent {
+
+  constructor() { }
 
   data = DATA;
 
@@ -36,7 +39,7 @@ export class TableComponent {
   }
 
   toggleData() {
-    this.data = this.data ? null : DATA;
+    this.data = this.data
   }
 
   onRowClick($event: INglDatatableRowClick) {
