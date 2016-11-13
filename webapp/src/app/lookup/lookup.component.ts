@@ -11,15 +11,22 @@ import {Observable} from 'rxjs/Observable';
 
 export class LookupComponent {
 
-  value: string = '';
+  valueOU: string = '';
   orgUnit = '';
+  valueIndicator: string = '';
+  indicator = '';
 
   constructor(private lookupService: LookupService) {}
 
   // Lookup async function for organisation units
-  lookupAsync = (query: string): Observable<any[]> => {
-    return this.lookupService.getLookupAsync(query); 
+  lookupOU = (query: string): Observable<any[]> => {
+    return this.lookupService.getLookupUnit(query); 
   }
+
+  lookupIndicator = (query: string): Observable<any[]> => {
+    return this.lookupService.getLookupIndicator(query); 
+  }
+
 
   runClick() {
     console.log(typeof(this.orgUnit));
@@ -28,6 +35,8 @@ export class LookupComponent {
       if (key == 'id') {
           console.log(value);
     }
+  }
 }
-}
+
+
 }

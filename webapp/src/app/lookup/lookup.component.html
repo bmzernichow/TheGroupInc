@@ -1,14 +1,35 @@
 <body>
-<ngl-lookup [(value)]="value" [lookup]="lookupAsync" field="organisationUnit" debounce="200" [(pick)]="orgUnit">
-  <template nglLookupLabel>Search for an organisation unit</template>
-  <template nglLookupItem let-ctx>
-    <div class="slds-media__body">
-      <div class="slds-lookup__result-text">{{ctx.organisationUnit}}</div>
-      <span class="slds-lookup__result-meta slds-text-body--small">{{ctx.displayName}}</span>
-    </div>
-  </template>
-</ngl-lookup>
-<div *ngIf="orgUnit" class="slds-m-top--large">Selected org unit id: <b>{{orgUnit.id}}</b></div>
-<div class="slds-text-title--caps slds-m-top--x-large slds-m-bottom--small"></div>
-<button (click)="runClick()">Click</button>
+
+  <div class="orgUnit">
+    <ngl-lookup [(value)]="valueOU" [lookup]="lookupOU" field="field1" debounce="200" searchIcon=true 
+    [(pick)]="orgUnit">
+      <template nglLookupLabel>Search for an organisation unit</template>
+      <template nglLookupItem let-ctx>
+        <div class="slds-media__body">
+          <div class="slds-lookup__result-text">{{ctx.field1}}</div>
+          <span class="slds-lookup__result-meta slds-text-body--small">{{ctx.displayName}}</span>
+        </div>
+      </template>
+    </ngl-lookup>
+    <div *ngIf="orgUnit" class="slds-m-top--large">Selected unit: <b>{{orgUnit.displayName}}</b></div>
+    <div class="slds-text-title--caps slds-m-top--x-large slds-m-bottom--small"></div>
+    <button (click)="runClick()">Click</button>
+  </div>
+
+    <div class="indicator">
+    <ngl-lookup [(value)]="valueIndicator" [lookup]="lookupIndicator" field="field2" debounce="200" searchIcon=true 
+    [(pick)]="indicator">
+      <template nglLookupLabel>Search for an indicator</template>
+      <template nglLookupItem let-ctx>
+        <div class="slds-media__body">
+          <div class="slds-lookup__result-text">{{ctx.field2}}</div>
+          <span class="slds-lookup__result-meta slds-text-body--small">{{ctx.displayName}}</span>
+        </div>
+      </template>
+    </ngl-lookup>
+    <div *ngIf="orgUnit" class="slds-m-top--large">Selected indicator: <b>{{orgUnit.id}}</b></div>
+    <div class="slds-text-title--caps slds-m-top--x-large slds-m-bottom--small"></div>
+    <button (click)="runClick()">Click</button>
+  </div>
+
 </body>
