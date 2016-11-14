@@ -4,11 +4,12 @@ import {SharedService} from '../shared.service';
 import {INglDatatableSort, INglDatatableRowClick} from 'ng-lightning/ng-lightning';
 
 const DATA = [
-  { rank: 1, name: 'Kareem', surname: 'Abdul-Jabbar', points: 38387 },
-  { rank: 2, name: 'Karl', surname: 'Malone', points: 36928 },
-  { rank: 3, name: 'Kobe', surname: 'Bryant', points: 33643 },
-  { rank: 4, name: 'Michael', surname: 'Jordan', points: 32292 },
-  { rank: 5, name: 'Wilt', surname: 'Chamberlain', points: 31419 },
+  { date: '-', value: '-' },
+  { date: '-', value: '-' },
+  { date: '-', value: '-' },
+  { date: '-', value: '-' },
+  { date: '-', value: '-' },
+  { date: '-', value: '-' },
 ];
 
 @Component({
@@ -22,9 +23,10 @@ export class TableComponent {
   constructor(private sharedService: SharedService) { }
 
   data = DATA;
+  border = true;
 
   // Initial sort
-  sort: INglDatatableSort = { key: 'rank', order: 'asc' };
+  sort: INglDatatableSort = { key: 'date', order: 'asc' };
 
   // Show loading overlay
   loading = false;
@@ -36,7 +38,7 @@ export class TableComponent {
   onSort($event: INglDatatableSort) {
     const { key, order } = $event;
     this.data.sort((a: any, b: any) => {
-      return (key === 'rank' ? b[key] - a[key] : b[key].localeCompare(a[key])) * (order === 'desc' ? 1 : -1);
+      return (key === 'date' ? b[key] - a[key] : b[key].localeCompare(a[key])) * (order === 'desc' ? 1 : -1);
     });
   }
 
@@ -44,10 +46,9 @@ export class TableComponent {
     console.log('clicked row', $event.data);
   }
 
- test () {
-   //this.data = this.model.data;
-    console.log(this.sharedService.data);
+  getParsed() {
+    this.sharedService.parseLookupToTable();
     this.data = this.sharedService.data;
-    // this.model.data = this.model.data;
   }
+
 }
