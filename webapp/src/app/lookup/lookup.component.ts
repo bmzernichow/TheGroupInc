@@ -38,7 +38,6 @@ export class LookupComponent {
 
   getStatistics(indicator: string, period: string, orgUnit: string) {
     this.lookupService.getStatistics(this.indicator, this.period, this.orgUnit).subscribe(data => {this.sharedService.data = data});
-    // console.log(this.sharedService.data2.length);
   }
 
   }
