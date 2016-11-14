@@ -1,4 +1,6 @@
 import {Component} from '@angular/core';
+import {LookupService} from '../lookup/lookup.service'
+import {SharedService} from '../shared.service';
 import {INglDatatableSort, INglDatatableRowClick} from 'ng-lightning/ng-lightning';
 
 const DATA = [
@@ -17,7 +19,7 @@ const DATA = [
 
 export class TableComponent {
 
-  constructor() { }
+  constructor(private sharedService: SharedService) { }
 
   data = DATA;
 
@@ -38,11 +40,14 @@ export class TableComponent {
     });
   }
 
-  toggleData() {
-    this.data = this.data
-  }
-
   onRowClick($event: INglDatatableRowClick) {
     console.log('clicked row', $event.data);
+  }
+
+ test () {
+   //this.data = this.model.data;
+    console.log(this.sharedService.data);
+    this.data = this.sharedService.data;
+    // this.model.data = this.model.data;
   }
 }

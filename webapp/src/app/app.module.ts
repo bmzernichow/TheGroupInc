@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { TableComponent } from './table/table.component';
 import { ChartComponent } from './chart/chart.component';
 import { LookupComponent } from './lookup/lookup.component';
+import {SharedService} from './shared.service';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,7 @@ import { LookupComponent } from './lookup/lookup.component';
     NglModule.forRoot(),
     ChartModule
   ],
-  providers: [],
+  providers: [SharedService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

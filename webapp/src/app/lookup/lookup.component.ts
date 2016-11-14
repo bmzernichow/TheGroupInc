@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {LookupService} from './lookup.service'
+import {SharedService} from '../shared.service';
 import {Observable} from 'rxjs/Observable';
 
 @Component({
@@ -18,9 +19,7 @@ export class LookupComponent {
   period: string;
   open: boolean;
 
-  data: any;
-
-  constructor(private lookupService: LookupService) {}
+  constructor(private lookupService: LookupService, private sharedService: SharedService) {}
 
   // Lookup async function for organisation units
   lookupOU = (query: string): Observable<any[]> => {
@@ -38,12 +37,12 @@ export class LookupComponent {
   ];
 
   getStatistics(indicator: string, period: string, orgUnit: string) {
-    this.lookupService.getStatistics(this.indicator, this.period, this.orgUnit).subscribe(data => {this.data = data});
+    this.lookupService.getStatistics(this.indicator, this.period, this.orgUnit).subscribe(data => {this.sharedService.data = data});
   }
 
   getTest() {
-    console.log(this.data);
-    // this.table.toggleData();
+    console.log(this.sharedService.data);
+    // this.model.data = this.model.data;
   }
 
 }
