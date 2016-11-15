@@ -52,7 +52,7 @@ export class LookupService {
     let ind = this.iterateId(indicator);
     let unit = this.iterateId(orgUnit);
 
-    return this.http.get(`https://play.dhis2.org/test/api/25/analytics.json?dimension=dx:${ind}&dimension=pe:${period}&filter=ou:${unit}&displayProperty=NAME`, {headers: headers})
+    return this.http.get(`https://play.dhis2.org/test/api/analytics.json?dimension=dx:${ind}&dimension=pe:${period}&filter=ou:${unit}&displayProperty=NAME`, {headers: headers})
       .map((res: Response) => res.json())
       .map((response: any) => response.rows);
   }

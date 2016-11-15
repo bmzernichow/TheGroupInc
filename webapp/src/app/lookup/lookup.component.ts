@@ -17,7 +17,9 @@ export class LookupComponent {
   valueIndicator: string = '';
   indicator = '';
   period: string;
+  periodMovingAverage: string;
   open: boolean;
+  open2: boolean;
 
   constructor(private lookupService: LookupService, private sharedService: SharedService) {
   }
@@ -35,6 +37,21 @@ export class LookupComponent {
   items = [
     {value: 'LAST_6_MONTHS'},
     {value: 'LAST_12_MONTHS'},
+  ];
+  // items array for the periodMovingAverage menu
+  items2 = [
+    {value: '1'},
+    {value: '2'},
+    {value: '3'},
+    {value: '4'},
+    {value: '5'},
+    {value: '6'},
+    {value: '7'},
+    {value: '8'},
+    {value: '9'},
+    {value: '10'},
+    {value: '11'},
+    {value: '12'},
   ];
 
   // function for generating url from unit, indicator and period and returning http response
