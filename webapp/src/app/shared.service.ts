@@ -27,11 +27,31 @@ export class SharedService {
         let value = objectToIterate[i][key];
         if (key == _key) {
           this.data3.push(value);
-          console.log('Test');
+          console.log('Test' + this.data3);
         }
       }
     }
     return this.data3;
+
+  }
+
+  getMovingAverage(interval, data) {
+
+    var movingAverages = [];
+    var i = 0;
+    var temp = 0;
+
+    for (i; i < data.length; i++) {
+            while (i > 0) {
+              movingAverages.push(temp);
+              temp = 0;
+            }
+        for (var j = 0; j <= interval; j++) {
+            temp += data[j];
+            i++;
+        }
+    }
+            console.log(movingAverages);
 
   }
 

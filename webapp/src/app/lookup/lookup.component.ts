@@ -44,4 +44,8 @@ export class LookupComponent {
     });
   }
 
+  getTest() {
+        this.sharedService.getMovingAverage(3, this.sharedService.data2);
+  }
+
 }
