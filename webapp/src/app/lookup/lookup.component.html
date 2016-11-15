@@ -1,36 +1,36 @@
 <body>
 
-  <div class="orgUnit">
-    <ngl-lookup [(value)]="valueOU" [lookup]="lookupOU" field="field1" debounce="200" searchIcon=true 
-    [(pick)]="orgUnit">
-      <template nglLookupLabel>Search for an organisation unit</template>
-      <template nglLookupItem let-ctx>
-        <div class="slds-media__body">
-          <div class="slds-lookup__result-text">{{ctx.field1}}</div>
-          <span class="slds-lookup__result-meta slds-text-body--small">{{ctx.displayName}}</span>
-        </div>
-      </template>
-    </ngl-lookup>
-    <div *ngIf="orgUnit" class="slds-m-top--large">Selected unit: <b>{{orgUnit.displayName}}</b></div>
-    <div class="slds-text-title--caps slds-m-top--x-large slds-m-bottom--small"></div>
-  </div>
+<div class="orgUnit">
+  <ngl-lookup [(value)]="valueOU" [lookup]="lookupOU" field="field1" debounce="200" searchIcon=true
+              [(pick)]="orgUnit">
+    <template nglLookupLabel>Search for an organisation unit</template>
+    <template nglLookupItem let-ctx>
+      <div class="slds-media__body">
+        <div class="slds-lookup__result-text">{{ctx.field1}}</div>
+        <span class="slds-lookup__result-meta slds-text-body--small">{{ctx.displayName}}</span>
+      </div>
+    </template>
+  </ngl-lookup>
+  <div *ngIf="orgUnit" class="slds-m-top--large">Selected unit: <b>{{orgUnit.displayName}}</b></div>
+  <div class="slds-text-title--caps slds-m-top--x-large slds-m-bottom--small"></div>
+</div>
 
-    <div class="indicator">
-    <ngl-lookup [(value)]="valueIndicator" [lookup]="lookupIndicator" field="field2" debounce="200" searchIcon=true 
-    [(pick)]="indicator">
-      <template nglLookupLabel>Search for an indicator</template>
-      <template nglLookupItem let-ctx>
-        <div class="slds-media__body">
-          <div class="slds-lookup__result-text">{{ctx.field2}}</div>
-          <span class="slds-lookup__result-meta slds-text-body--small">{{ctx.displayName}}</span>
-        </div>
-      </template>
-    </ngl-lookup>
-    <div *ngIf="orgUnit" class="slds-m-top--large">Selected indicator: <b>{{indicator.displayName}}</b></div>
-    <div class="slds-text-title--caps slds-m-top--x-large slds-m-bottom--small"></div>
-  </div>
+<div class="indicator">
+  <ngl-lookup [(value)]="valueIndicator" [lookup]="lookupIndicator" field="field2" debounce="200" searchIcon=true
+              [(pick)]="indicator">
+    <template nglLookupLabel>Search for an indicator</template>
+    <template nglLookupItem let-ctx>
+      <div class="slds-media__body">
+        <div class="slds-lookup__result-text">{{ctx.field2}}</div>
+        <span class="slds-lookup__result-meta slds-text-body--small">{{ctx.displayName}}</span>
+      </div>
+    </template>
+  </ngl-lookup>
+  <div *ngIf="orgUnit" class="slds-m-top--large">Selected indicator: <b>{{indicator.displayName}}</b></div>
+  <div class="slds-text-title--caps slds-m-top--x-large slds-m-bottom--small"></div>
+</div>
 
-  <div class="period">
+<div class="period">
     <span nglDropdown [(open)]="open">
   <button class="slds-button slds-button--neutral" nglDropdownTrigger>
     <span class="slds-truncate">Select a period</span>
@@ -48,10 +48,10 @@
     </div>
   </span>
   <div *ngIf="period" class="slds-m-top--large">You selected: <b>{{period}}</b></div>
-  </div>
-  
-  <div class="getStats">
-      <button type="button" (click)=getStatistics() nglButton="brand">Get statistics</button>
-  </div>
+</div>
+
+<div class="getStats">
+  <button type="button" (click)=getStatistics() nglButton="brand">Get statistics</button>
+</div>
 
 </body>

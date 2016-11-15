@@ -1,9 +1,10 @@
 body {
-    border: 1px solid;
-    border-radius: 20px;
-    border-color: white;
-    padding-top: 10px;
+  border: 1px solid;
+  border-radius: 20px;
+  border-color: white;
+  padding-top: 10px;
 }
+
 div.getChartData {
-    padding-bottom: 20px;
+  padding-bottom: 20px;
 }

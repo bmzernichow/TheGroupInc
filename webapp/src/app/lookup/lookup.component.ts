@@ -19,25 +19,29 @@ export class LookupComponent {
   period: string;
   open: boolean;
 
-  constructor(private lookupService: LookupService, private sharedService: SharedService) {}
+  constructor(private lookupService: LookupService, private sharedService: SharedService) {
+  }
 
   // Lookup async function for organisation units
   lookupOU = (query: string): Observable<any[]> => {
-    return this.lookupService.getLookupUnit(query); 
+    return this.lookupService.getLookupUnit(query);
   }
 
   // Lookup async function for indicators
   lookupIndicator = (query: string): Observable<any[]> => {
-    return this.lookupService.getLookupIndicator(query); 
+    return this.lookupService.getLookupIndicator(query);
   }
   // items array for period menu
   items = [
-    { value: 'LAST_6_MONTHS'},
-    { value: 'LAST_12_MONTHS'},
+    {value: 'LAST_6_MONTHS'},
+    {value: 'LAST_12_MONTHS'},
   ];
 
+  // function for generating url from unit, indicator and period and returning http response
   getStatistics(indicator: string, period: string, orgUnit: string) {
-    this.lookupService.getStatistics(this.indicator, this.period, this.orgUnit).subscribe(data => {this.sharedService.data = data});
+    this.lookupService.getStatistics(this.indicator, this.period, this.orgUnit).subscribe(data => {
+      this.sharedService.data = data
+    });
   }
 
-  }
+}

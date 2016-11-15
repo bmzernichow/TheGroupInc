@@ -1,15 +1,14 @@
 import {Component} from '@angular/core';
-import {LookupService} from '../lookup/lookup.service'
 import {SharedService} from '../shared.service';
 import {INglDatatableSort, INglDatatableRowClick} from 'ng-lightning/ng-lightning';
 
 const DATA = [
-  { date: '-', value: '-' },
-  { date: '-', value: '-' },
-  { date: '-', value: '-' },
-  { date: '-', value: '-' },
-  { date: '-', value: '-' },
-  { date: '-', value: '-' },
+  {date: '-', value: '-'},
+  {date: '-', value: '-'},
+  {date: '-', value: '-'},
+  {date: '-', value: '-'},
+  {date: '-', value: '-'},
+  {date: '-', value: '-'},
 ];
 
 @Component({
@@ -20,13 +19,14 @@ const DATA = [
 
 export class TableComponent {
 
-  constructor(private sharedService: SharedService) { }
+  constructor(private sharedService: SharedService) {
+  }
 
   data = DATA;
   border = true;
 
   // Initial sort
-  sort: INglDatatableSort = { key: 'date', order: 'asc' };
+  sort: INglDatatableSort = {key: 'date', order: 'asc'};
 
   // Show loading overlay
   loading = false;
@@ -36,7 +36,7 @@ export class TableComponent {
 
   // Custom sort function
   onSort($event: INglDatatableSort) {
-    const { key, order } = $event;
+    const {key, order} = $event;
     this.data.sort((a: any, b: any) => {
       return (key === 'date' ? b[key] - a[key] : b[key].localeCompare(a[key])) * (order === 'desc' ? 1 : -1);
     });
@@ -46,6 +46,7 @@ export class TableComponent {
     console.log('clicked row', $event.data);
   }
 
+  // fetch data to table
   getParsed() {
     this.sharedService.parseLookupToTable();
     this.data = this.sharedService.data;
