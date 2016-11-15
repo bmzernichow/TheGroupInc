@@ -52,15 +52,15 @@ export class ChartComponent {
     };
   }
 
-  getData(_date, _values,borderColor){
+  getData(label,_date, _values,backgroundColor,borderColor){
     return  {
       labels: _date,
       datasets: [
         {
-          label: 'DHIS2 chart',
+          label: label,
           data: _values,
           fill: true,
-          // backgroundColor: '',
+          backgroundColor: backgroundColor,
           borderColor: borderColor //'#4bc0c0'
         }
       ]
@@ -72,7 +72,7 @@ export class ChartComponent {
     let _date = this.sharedService.getChartLabels(this.sharedService.data2, 'date');
     let _values = this.sharedService.getChartLabels(this.sharedService.data2, 'value');
     // this.data = this.getData();
-    this.data = this.getData(_date,_values,'#00F');
+    this.data = this.getData('line',_date,_values,'#CCC','#00F');
     this.getChartData2();
   }
 
@@ -80,7 +80,7 @@ export class ChartComponent {
     let _date = this.sharedService.getChartLabels(this.sharedService.data2, 'date');
     let _values = this.sharedService.getChartLabels(this.sharedService.data2, 'value');
     // this.data = this.getData();
-    this.data2 = this.getData(_date,_values,'#00F');
+    this.data2 = this.getData('bar',_date,_values,'#888','#00F');
   }
 
 }
