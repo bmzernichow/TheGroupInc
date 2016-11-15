@@ -1,32 +1,41 @@
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
+
 .title {
-    border-radius: 5px 5px 5px 5px;
-    background: #626161;
-    padding: 10px;
-    width: 100%;
-    height: 60px;
+  border-radius: 5px 5px 5px 5px;
+  background: #626161;
+  padding: 10px;
+  width: 100%;
+  height: 60px;
 }
+
 .lookup {
-    width: 25%;
-    float: left;
-    padding: 10px;
+  width: 25%;
+  float: left;
+  padding: 10px;
 }
+
 .chart {
-    width: 75%;
-    float: right;
-    padding: 10px;
+  width: 75%;
+  float: right;
+  padding: 10px;
 }
+
 .datatable {
-    width: 75%;
-    float: right;
-    padding: 10px;
+  width: 75%;
+  float: right;
+  padding: 10px;
 }
+
 h1 {
-    text-align: left;
-    color: #ffffff;
-    font-size: 200%;
-    font-weight: bold;
-    letter-spacing: 2px;
+  text-align: left;
+  color: #ffffff;
+  font-size: 200%;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+body {
+  height: 75%;
 }

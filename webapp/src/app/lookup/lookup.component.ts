@@ -1,33 +1,47 @@
 import {Component} from '@angular/core';
-import {Http, Response, Headers} from '@angular/http';
+import {LookupService} from './lookup.service'
+import {SharedService} from '../shared.service';
 import {Observable} from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
 
 @Component({
   selector: 'lookup',
   templateUrl: './lookup.component.html',
-  styleUrls: ['./lookup.component.css']
+  styleUrls: ['./lookup.component.css'],
+  providers: [LookupService]
 })
 
 export class LookupComponent {
 
-  value: string = '';
+  valueOU: string = '';
   orgUnit = '';
+  valueIndicator: string = '';
+  indicator = '';
+  period: string;
+  open: boolean;
 
-  constructor(private http: Http) {}
+  constructor(private lookupService: LookupService, private sharedService: SharedService) {
+  }
 
   // Lookup async function for organisation units
-  lookupAsync = (query: string): Observable<any[]> => {
-    if (!query) {
-      return null;
-    }
-
-    var headers = new Headers();
-    headers.append('Authorization', "Basic " + btoa("admin:district"));
-
-    return this.http.get(`https://play.dhis2.org/test/api/organisationUnits.json?paging=false&filter=displayName:ilike:${query}`, {headers: headers})
-      .map((res: Response) => res.json())
-      .map((response: any) => response.organisationUnits);
-    
+  lookupOU = (query: string): Observable<any[]> => {
+    return this.lookupService.getLookupUnit(query);
   }
+
+  // Lookup async function for indicators
+  lookupIndicator = (query: string): Observable<any[]> => {
+    return this.lookupService.getLookupIndicator(query);
+  }
+  // items array for period menu
+  items = [
+    {value: 'LAST_6_MONTHS'},
+    {value: 'LAST_12_MONTHS'},
+  ];
+
+  // function for generating url from unit, indicator and period and returning http response
+  getStatistics(indicator: string, period: string, orgUnit: string) {
+    this.lookupService.getStatistics(this.indicator, this.period, this.orgUnit).subscribe(data => {
+      this.sharedService.data = data
+    });
+  }
+
 }
