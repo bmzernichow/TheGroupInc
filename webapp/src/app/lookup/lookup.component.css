@@ -1,0 +1,19 @@
+body {
+  padding-right: 10px;
+}
+
+div.indicator {
+  padding-top: 10px;
+}
+
+div.orgUnit {
+  padding-top: 10px;
+}
+
+div.period {
+  padding-top: 10px;
+}
+
+div.getStats {
+  padding-top: 40px;
+}
