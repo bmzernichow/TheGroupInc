@@ -14,6 +14,10 @@ div.period {
   padding-top: 10px;
 }
 
+div.periodMovingAverage {
+  padding-top: 20px;
+}
+
 div.getStats {
   padding-top: 40px;
 }
