@@ -17,7 +17,7 @@ export class LookupComponent {
   valueIndicator: string = '';
   indicator = '';
   period: string;
-  periodMovingAverage: string;
+  intervalMovingAverage: string;
   open: boolean;
   open2: boolean;
 
@@ -59,10 +59,7 @@ export class LookupComponent {
     this.lookupService.getStatistics(this.indicator, this.period, this.orgUnit).subscribe(data => {
       this.sharedService.data = data
     });
+    this.sharedService.intervalMovingAverage = parseInt(this.intervalMovingAverage);
   }
-
-  getTest() {
-        this.sharedService.getMovingAverage(3, this.sharedService.data2);
-  }
-
+  
 }
