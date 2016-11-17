@@ -19,3 +19,19 @@ npm install -g angular-cli
 ```
 ng serve
 ```
+
+Go to localhost:4200
+
+Testing the app in development mode:
+
+- search for orgUnits: Bo
+
+- search for indicator: Births total
+
+- select period: LAST_12_MONTHS
+
+- press: Get statistics
+
+- press: Fetch data to table
+
+- press: Fetch data to chart
