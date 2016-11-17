@@ -16,24 +16,30 @@ export class ChartComponent {
 
   constructor(private sharedService: SharedService) {
     this.data = {
-      labels: [],
+      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'august', 'october', 'november', 'december',],
       datasets: [
         {
-          label: 'DHIS2 chart',
+          label: '',
           data: [],
-          fill: true,
-          borderColor: '#4bc0c0'
+          fill: false,
+          borderColor: '#565656'
+        },
+        {
+          label: '',
+          data: [],
+          fill: false,
+          borderColor: '#00F'
         }
       ]
     }
     this.data2 = {
-      labels: [],
+      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'august', 'october', 'november', 'december',],
       datasets: [
         {
           label: 'DHIS2 chart',
           data: [],
           fill: true,
-          borderColor: '#4bc0c0'
+          borderColor: '#00F'
         }
       ]
     }
@@ -53,12 +59,15 @@ export class ChartComponent {
   }
 
   getData(_date, _values,borderColor){
+    var d = new Date();
+    var y = d.getFullYear();
+    var m = d.getMonth();
     return  {
-      labels: _date,
+      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'august', 'october', 'november', 'december',],
       datasets: [
         {
-          label: 'DHIS2 chart',
-          data: _values,
+          label: y,
+          data: _values.slice(12,12+m),
           fill: true,
           // backgroundColor: '',
           borderColor: borderColor //'#4bc0c0'
@@ -66,13 +75,39 @@ export class ChartComponent {
       ]
     }
   }
+  getData2(_date, _values,borderColor){
+    var d = new Date();
+    var y = d.getFullYear();
+    var m = d.getMonth();
+    return  {
+      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'august', 'october', 'november', 'december',],
+      datasets: [
+        {
+          label: (y-1),
+          data: _values.slice(0,11),
+          fill: true,
+          // backgroundColor: '',
+          borderColor: '#565656' //'#4bc0c0'
+        },
+        {
+          label: y,
+          data: _values.slice(12,12+m),
+          fill: true,
+          // backgroundColor: '',
+          borderColor: borderColor  //'#4bc0c0'
+        }
+      ]
+    }
+  }
 
   // get date and count values from shared.service.ts
   getChartData() {
+    var d = new Date();
+    var m = d.getMonth();
     let _date = this.sharedService.getChartLabels(this.sharedService.data2, 'date');
     let _values = this.sharedService.getChartLabels(this.sharedService.data2, 'value');
     // this.data = this.getData();
-    this.data = this.getData(_date,_values,'#00F');
+    this.data = this.getData2(_date,_values,'#00F');
     this.getChartData2();
   }
 
