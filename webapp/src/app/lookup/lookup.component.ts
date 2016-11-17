@@ -63,12 +63,12 @@ export class LookupComponent {
       var y = d.getFullYear();
       var m = d.getMonth();
       console.log(m);
-      for (var i = (m+12); i > 0; i--){
+      for (var i = (m+12); i >= 0; i--){
         console.log(i);
        if (i<m+1){
          if(m-i+1<10){
            timeperiod = timeperiod + y +"0" + (m-i+1)+";";
-           
+           console.log("a1: " +(m-i+1));
          }
          else{
            timeperiod = timeperiod + y +"" + (m-i+1)+";";
