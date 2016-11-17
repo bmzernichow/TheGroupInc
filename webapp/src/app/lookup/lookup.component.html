@@ -50,16 +50,16 @@
   <div *ngIf="period" class="slds-m-top--large">You selected: <b>{{period}}</b></div>
 </div>
 
-<div class="periodMovingAverage">
+<div class="intervalMovingAverage">
     <span nglDropdown [(open)]="open2">
   <button class="slds-button slds-button--neutral" nglDropdownTrigger>
-    <span class="slds-truncate">Select a period for moving average</span>
+    <span class="slds-truncate">Select an interval for moving average</span>
     <ngl-icon icon="down" type="default" size="x-small"></ngl-icon>
   </button>
     <div class="slds-dropdown slds-dropdown--left">
       <ul class="dropdown__list" role="menu">
         <li class="slds-dropdown__item" *ngFor="let item of items2;">
-          <a role="menuitem" nglDropdownItem (click)="periodMovingAverage = item.value; open2 = false;">
+          <a role="menuitem" nglDropdownItem (click)="intervalMovingAverage = item.value; open2 = false;">
             <p class="slds-truncate">{{item.value}}</p>
             <ngl-icon [icon]="item.icon" type="default" size="x-small"></ngl-icon>
           </a>
@@ -67,16 +67,11 @@
       </ul>
     </div>
   </span>
-  <div *ngIf="periodMovingAverage" class="slds-m-top--large">You selected: <b>{{periodMovingAverage}}</b></div>
+  <div *ngIf="intervalMovingAverage" class="slds-m-top--large">You selected: <b>{{intervalMovingAverage}}</b></div>
 </div>
-
 
 <div class="getStats">
   <button type="button" (click)=getStatistics() nglButton="brand">Get statistics</button>
-</div>
-
-<div class="getStats">
-  <button type="button" (click)=getTest() nglButton="brand">Get test</button>
 </div>
 
 </body>
