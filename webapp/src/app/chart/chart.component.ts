@@ -16,16 +16,16 @@ export class ChartComponent {
 
   constructor(private sharedService: SharedService) {
     this.data = {
-      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'august', 'october', 'november', 'december',],
+      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'October', 'November', 'December',],
       datasets: [
         {
-          label: '',
+          label: 'Year',
           data: [],
           fill: false,
           borderColor: '#565656'
         },
         {
-          label: '',
+          label: 'Year',
           data: [],
           fill: false,
           borderColor: '#00F'
@@ -33,10 +33,10 @@ export class ChartComponent {
       ]
     }
     this.data2 = {
-      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'august', 'october', 'november', 'december',],
+      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'October', 'November', 'December',],
       datasets: [
         {
-          label: 'DHIS2 chart',
+          label: 'Year',
           data: [],
           fill: true,
           borderColor: '#00F'
@@ -58,12 +58,12 @@ export class ChartComponent {
     };
   }
 
-  getData(_date, _values,borderColor){
+  getData(_date, _values, borderColor, _label){
     var d = new Date();
     var y = d.getFullYear();
     var m = d.getMonth();
     return  {
-      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'august', 'october', 'november', 'december',],
+      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'October', 'November', 'December',],
       datasets: [
         {
           label: y,
@@ -80,7 +80,7 @@ export class ChartComponent {
     var y = d.getFullYear();
     var m = d.getMonth();
     return  {
-      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'august', 'october', 'november', 'december',],
+      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'October', 'November', 'December',],
       datasets: [
         {
           label: (y-1),
@@ -102,12 +102,10 @@ export class ChartComponent {
 
   // get date and count values from shared.service.ts
   getChartData() {
-    var d = new Date();
-    var m = d.getMonth();
-    let _date = this.sharedService.getChartLabels(this.sharedService.data2, 'date');
-    let _values = this.sharedService.getChartLabels(this.sharedService.data2, 'value');
+    let _date = this.sharedService.getChartLabels(this.sharedService.dataMovingAverages, 'date');
+    let _values = this.sharedService.getChartLabels(this.sharedService.dataMovingAverages, 'value');
     // this.data = this.getData();
-    this.data = this.getData2(_date,_values,'#00F');
+    this.data = this.getData2(_date, _values, '#00F');
     this.getChartData2();
   }
 
@@ -115,7 +113,7 @@ export class ChartComponent {
     let _date = this.sharedService.getChartLabels(this.sharedService.data2, 'date');
     let _values = this.sharedService.getChartLabels(this.sharedService.data2, 'value');
     // this.data = this.getData();
-    this.data2 = this.getData(_date,_values,'#00F');
+    this.data2 = this.getData(_date,_values,'#00F', 'Average');
   }
 
 }

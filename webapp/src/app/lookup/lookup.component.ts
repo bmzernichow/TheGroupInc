@@ -17,7 +17,7 @@ export class LookupComponent {
   valueIndicator: string = '';
   indicator = '';
   period: string;
-  periodMovingAverage: string;
+  intervalMovingAverage: string;
   open: boolean;
   open2: boolean;
 
@@ -96,5 +96,6 @@ export class LookupComponent {
         this.sharedService.data = data
       });
     }
+    this.sharedService.intervalMovingAverage = parseInt(this.intervalMovingAverage);
   }
 }

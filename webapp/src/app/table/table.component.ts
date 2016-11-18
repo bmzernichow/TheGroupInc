@@ -48,8 +48,9 @@ export class TableComponent {
 
   // fetch data to table
   getParsed() {
-    this.sharedService.parseLookupToTable();
-    this.data = this.sharedService.data;
+    this.data = this.sharedService.parseLookupToTable();
+    this.sharedService.getMovingAverage(this.sharedService.data2, 'value');
+
   }
 
 }
