@@ -35,8 +35,8 @@ export class LookupComponent {
   }
   // items array for period menu
   items = [
-    {value: 'LAST_6_MONTHS'},
-    {value: 'LAST_12_MONTHS'},
+    {value: 'MONTHS'},
+    {value: 'WEEKS'},
   ];
   // items array for the periodMovingAverage menu
   items2 = [
@@ -57,15 +57,33 @@ export class LookupComponent {
   // function for generating url from unit, indicator and period and returning http response
   getStatistics(indicator: string, period: string, orgUnit: string) {
     
-    if(this.period == "LAST_6_MONTHS"){
+    if(this.period == "WEEKS"){
+    }
+    else{
       var timeperiod = "";
       var d = new Date();
       var y = d.getFullYear();
       var m = d.getMonth();
-      console.log(m);
-      for (var i = (m+12); i >= 0; i--){
+      var p = parseInt(this.intervalMovingAverage);
+      console.log("Month: "+m);
+      console.log("intervalMovingAverage:"+p);
+      for (var i = (m+12+p-1); i >= 0; i--){
         console.log(i);
-       if (i<m+1){
+        if(i>m+12){
+          console.log("i > m + 12; " + i + ">" + m + " " + 12);
+          if(24+m-i+1<10){
+           timeperiod = timeperiod + (y-2) +"0" + (24+m-i+1)+";";
+           console.log("p1: " +(24+m-i+1));
+         }
+         else{
+           timeperiod = timeperiod + (y-2) +"" + (24+m-i+1)+";";
+           console.log("p2: " +(24+m-i+1));
+         }
+        }
+
+
+       else if (i<m+1){
+         console.log("i < m + 1; " + i + "<" + m + " " + 1);
          if(m-i+1<10){
            timeperiod = timeperiod + y +"0" + (m-i+1)+";";
            console.log("a1: " +(m-i+1));
@@ -76,7 +94,7 @@ export class LookupComponent {
          }
        }
        else {
-         if(m-i+13<10){
+         if(m+13-i<10){
            timeperiod = timeperiod + (y-1) +"0"+ (m+13-i)+";"
            console.log("b1: "+(m+13-i));
          }
@@ -88,11 +106,6 @@ export class LookupComponent {
        }
       }
       this.lookupService.getStatistics(this.indicator, timeperiod, this.orgUnit).subscribe(data => {
-        this.sharedService.data = data
-      });
-    }
-    else {
-      this.lookupService.getStatistics(this.indicator, this.period, this.orgUnit).subscribe(data => {
         this.sharedService.data = data
       });
     }
