@@ -69,7 +69,7 @@ export class ChartComponent {
           label: y,
           data: _values.slice(12,12+m),
           fill: true,
-          // backgroundColor: '',
+          // backgroundColor: backgroundColor,
           borderColor: borderColor //'#4bc0c0'
         }
       ]
