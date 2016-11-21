@@ -26,11 +26,11 @@
       </div>
     </template>
   </ngl-lookup>
-  <div *ngIf="orgUnit" class="slds-m-top--large">Selected indicator: <b>{{indicator.displayName}}</b></div>
+  <div *ngIf="indicator" class="slds-m-top--large">Selected indicator: <b>{{indicator.displayName}}</b></div>
   <div class="slds-text-title--caps slds-m-top--x-large slds-m-bottom--small"></div>
 </div>
 
-<div class="period">
+<!-- <div class="period">
     <span nglDropdown [(open)]="open">
   <button class="slds-button slds-button--neutral" nglDropdownTrigger>
     <span class="slds-truncate">Select a period</span>
@@ -49,7 +49,7 @@
   </span>
   <div *ngIf="period" class="slds-m-top--large">You selected: <b>{{period}}</b></div>
 </div>
-
+ -->
 <div class="intervalMovingAverage">
     <span nglDropdown [(open)]="open2">
   <button class="slds-button slds-button--neutral" nglDropdownTrigger>

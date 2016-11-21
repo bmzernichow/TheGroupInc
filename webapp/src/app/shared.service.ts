@@ -27,7 +27,8 @@ export class SharedService {
       this.data2.push({date: this.data[i][1], value: this.data[i][2]})
     }
     console.log(this.data2);
-    return this.data2.slice(0, 5);
+    var d = this.data2.length;
+    return this.data2.slice(d-5, d);
   }
 
   getChartLabels(objectToIterate, _key) {
