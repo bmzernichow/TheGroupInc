@@ -21,6 +21,8 @@ export class LookupComponent {
   open: boolean;
   open2: boolean;
 
+  enableMovingAverage: boolean = true;
+
   constructor(private lookupService: LookupService, private sharedService: SharedService) {
   }
 
@@ -47,12 +49,16 @@ export class LookupComponent {
   // function for generating url from unit, indicator and period and returning http response
   getStatistics(indicator: string, intervalMovingAverage: string, orgUnit: string) {
     
-
       
-      this.lookupService.getStatistics(this.indicator, this.intervalMovingAverage, this.orgUnit).subscribe(data => {
+       this.lookupService.getStatistics(this.indicator, this.intervalMovingAverage, this.orgUnit).subscribe(data => {
         this.sharedService.data = data
       });
     
-    this.sharedService.intervalMovingAverage = parseInt(this.intervalMovingAverage);
+    if(this.enableMovingAverage){
+      this.sharedService.intervalMovingAverage = parseInt(this.intervalMovingAverage);
+    }
+    else{
+      this.sharedService.intervalMovingAverage = 1;
+    }
   }
 }
