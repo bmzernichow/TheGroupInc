@@ -45,14 +45,51 @@ export class LookupService {
   }
 
   // function for generating url from unit, indicator and period and returning http response
-  getStatistics(indicator: string, period: string, orgUnit: string) {
+  getStatistics(indicator: string, intervalMovingAverage: string, orgUnit: string) {
+    var timeperiod = "";
+      var d = new Date();
+      var y = d.getFullYear();
+      var m = d.getMonth();
+      // the amount of extra needed datapoints to calculate moving average.  
+      var p = parseInt(intervalMovingAverage);
+      // Making a string for the period in the format yyyymm for each month of from last year until current. 
+      // Also adding p-1 extra months in front if this interfal
+      for (var i = (m+12+p-1); i >= 0; i--){
+        //the p-1 extra months
+        if(i>m+12){
+          if(24+m-i+1<10){
+           timeperiod = timeperiod + (y-2) +"0" + (24+m-i+1)+";";
+           }
+         else{
+           timeperiod = timeperiod + (y-2) +"" + (24+m-i+1)+";";
+          }
+        }
+       //this year
+       else if (i<m+1){
+         if(m-i+1<10){
+           timeperiod = timeperiod + y +"0" + (m-i+1)+";";
+         }
+         else{
+           timeperiod = timeperiod + y +"" + (m-i+1)+";";
+         }
+       }
+       // last year
+       else {
+         if(m+13-i<10){
+           timeperiod = timeperiod + (y-1) +"0"+ (m+13-i)+";"
+          }
+         else {
+           timeperiod = timeperiod + (y-1) +""+ (m+13-i)+";"
+         }
+       }
+     }
     var headers = new Headers();
     headers.append('Authorization', "Basic " + btoa("admin:district"));
 
     let ind = this.iterateId(indicator);
     let unit = this.iterateId(orgUnit);
 
-    return this.http.get(`https://play.dhis2.org/test/api/analytics.json?dimension=dx:${ind}&dimension=pe:${period}&filter=ou:${unit}&displayProperty=NAME`, {headers: headers})
+    return this.http.get(`https://play.dhis2.org/test/api/analytics.json?dimension=dx:${ind}&dimension=pe:${timeperiod}&filter=ou:${unit}&displayProperty=NAME`, {headers: headers})
       .map((res: Response) => res.json())
       .map((response: any) => response.rows);
   }
