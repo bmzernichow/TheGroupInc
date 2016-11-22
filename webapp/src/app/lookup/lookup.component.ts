@@ -65,42 +65,42 @@ export class LookupComponent {
       var y = d.getFullYear();
       var m = d.getMonth();
       var p = parseInt(this.intervalMovingAverage);
-      console.log("Month: "+m);
-      console.log("intervalMovingAverage:"+p);
+      // console.log("Month: "+m);
+      // console.log("intervalMovingAverage:"+p);
       for (var i = (m+12+p-1); i >= 0; i--){
-        console.log(i);
+        // console.log(i);
         if(i>m+12){
-          console.log("i > m + 12; " + i + ">" + m + " " + 12);
+          // console.log("i > m + 12; " + i + ">" + m + " " + 12);
           if(24+m-i+1<10){
            timeperiod = timeperiod + (y-2) +"0" + (24+m-i+1)+";";
-           console.log("p1: " +(24+m-i+1));
+           // console.log("p1: " +(24+m-i+1));
          }
          else{
            timeperiod = timeperiod + (y-2) +"" + (24+m-i+1)+";";
-           console.log("p2: " +(24+m-i+1));
+           // console.log("p2: " +(24+m-i+1));
          }
         }
 
 
        else if (i<m+1){
-         console.log("i < m + 1; " + i + "<" + m + " " + 1);
+         // console.log("i < m + 1; " + i + "<" + m + " " + 1);
          if(m-i+1<10){
            timeperiod = timeperiod + y +"0" + (m-i+1)+";";
-           console.log("a1: " +(m-i+1));
+           // console.log("a1: " +(m-i+1));
          }
          else{
            timeperiod = timeperiod + y +"" + (m-i+1)+";";
-           console.log("a2: " +(m-i+1));
+           // console.log("a2: " +(m-i+1));
          }
        }
        else {
          if(m+13-i<10){
            timeperiod = timeperiod + (y-1) +"0"+ (m+13-i)+";"
-           console.log("b1: "+(m+13-i));
+           // console.log("b1: "+(m+13-i));
          }
          else {
            timeperiod = timeperiod + (y-1) +""+ (m+13-i)+";"
-           console.log("b2: "+(m+13-i));
+           // console.log("b2: "+(m+13-i));
          }
 
        }
