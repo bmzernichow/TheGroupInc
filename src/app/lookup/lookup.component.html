@@ -46,6 +46,12 @@
   <div *ngIf="period" class="slds-m-top--large">You selected: <b>{{period}}</b></div>
 </div>
  -->
+
+
+ <ngl-form-checkbox-toggle label="Toggle Label" [error]="hasError ? error : null" class="slds-m-top--small">
+  <input nglFormControl type="checkbox" [required]="required" />
+</ngl-form-checkbox-toggle>
+
 <div class="intervalMovingAverage">
     <span nglDropdown [(open)]="open2">
   <button class="slds-button slds-button--neutral" nglDropdownTrigger>
