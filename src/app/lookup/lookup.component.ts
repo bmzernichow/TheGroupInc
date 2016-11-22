@@ -21,6 +21,8 @@ export class LookupComponent {
   open: boolean;
   open2: boolean;
 
+  enableMovingAverage: boolean = true;
+
   constructor(private lookupService: LookupService, private sharedService: SharedService) {
   }
 
@@ -64,7 +66,10 @@ export class LookupComponent {
       var d = new Date();
       var y = d.getFullYear();
       var m = d.getMonth();
-      var p = parseInt(this.intervalMovingAverage);
+      var p = 1; 
+      if(this.enableMovingAverage){
+        p = parseInt(this.intervalMovingAverage);
+      }
       // console.log("Month: "+m);
       // console.log("intervalMovingAverage:"+p);
       for (var i = (m+12+p-1); i >= 0; i--){
@@ -109,6 +114,11 @@ export class LookupComponent {
         this.sharedService.data = data
       });
     }
-    this.sharedService.intervalMovingAverage = parseInt(this.intervalMovingAverage);
+    if(this.enableMovingAverage){
+      this.sharedService.intervalMovingAverage = parseInt(this.intervalMovingAverage);
+    }
+    else{
+      this.sharedService.intervalMovingAverage = 1;
+    }
   }
 }
