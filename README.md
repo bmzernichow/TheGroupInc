@@ -1,4 +1,4 @@
-# Frontend Angular 2 webapp
+# DHIS2 Moving Average Statistics
 Includes components lookup search, data table and chart.
 
 ## Prerequisites
@@ -6,7 +6,7 @@ Node/ npm
 
 ## Installation/ running
 
-- Download project to your own computer and run inside the webapp folder:
+- Download project to your own computer and run:
 ```
 - npm install
 ```
@@ -15,12 +15,12 @@ Node/ npm
 npm install -g angular-cli
 ```
 
-- In cmd type (from current 'webapp' directory):
+- In cmd type:
 ```
 ng serve
 ```
 
-Go to localhost:4200
+Go to localhost:4200 via preferred web browser
 
 Testing the app in development mode:
 
@@ -28,7 +28,7 @@ Testing the app in development mode:
 
 - search for indicator: Births total
 
-- select period: LAST_12_MONTHS
+- select moving average interval: e.g. 3
 
 - press: Get statistics
 
