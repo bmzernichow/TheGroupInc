@@ -10,7 +10,7 @@ export class SharedService {
   data2 = [];
   data3 = [];
   dataMovingAverages = [];
-  intervalMovingAverage = 0;
+  intervalMovingAverage = 5;
 
   iterateId(objectToIterate, _key) {
     for (let key of Object.keys(objectToIterate)) {
@@ -53,7 +53,7 @@ export class SharedService {
     var j = 0;
     var temp = 0;
 
-    for (i; i <= data.length; i++) {
+    for (i; i <= data.length - this.intervalMovingAverage; i++) {
 
         for (j = 0; j < this.intervalMovingAverage; j++) {
           if (i+j < data.length) {
@@ -61,36 +61,28 @@ export class SharedService {
           }
         }
         if (temp != 0) {
-          i += this.intervalMovingAverage - 1;
+          // i += this.intervalMovingAverage - 1;
           console.log(temp);
-          tempArray.push(temp / j);
+          tempArray.push(Math.round(temp / j));
           temp = 0;
         }
     }
-    console.log(tempArray);
-    this.parseToObject(this.intervalMovingAverage, tempArray);
+    console.log(this.data.length);
+    console.log('Temparray length: ' + tempArray.length);
+    this.parseToObject(data, this.intervalMovingAverage, tempArray);
   }
 
-  parseToObject (interval, tempArray) {
+  parseToObject (data, interval, tempArray) {
 
-    var counter = 0;
+    var counter = (interval - 1) / 2;
 
-    for (var i = 0; i < this.data.length; i++) {
-      
-        var fromDate = this.data[i][1];
-        var toDate = '';
+    for (var i = 0; i < tempArray.length; i++) {
 
-      if (i + interval < this.data.length) {
-        toDate = this.data[i+interval-1][1];
-      }
-      else {
-        toDate = this.data[this.data.length - 1][1];
-      }
-      this.dataMovingAverages.push({date: fromDate + ' - ' + toDate, value: tempArray[counter]});
-      i += interval - 1; 
+      var _date = this.iterateId(data[counter], 'date');
+      this.dataMovingAverages.push({date: _date, value: tempArray[i]}); 
       counter ++;
     }
-    console.log(this.dataMovingAverages);
+    console.log('Parse function: ' + this.dataMovingAverages);
   }
 
 }

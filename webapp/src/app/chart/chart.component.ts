@@ -104,6 +104,9 @@ export class ChartComponent {
   getChartData() {
     let _date = this.sharedService.getChartLabels(this.sharedService.dataMovingAverages, 'date');
     let _values = this.sharedService.getChartLabels(this.sharedService.dataMovingAverages, 'value');
+    console.log('Date values: ' + _date);
+    console.log('Date values: ' + _values);
+
     // this.data = this.getData();
     this.data = this.getData2(_date, _values, '#00F');
     this.getChartData2();
