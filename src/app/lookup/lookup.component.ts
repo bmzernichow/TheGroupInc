@@ -49,16 +49,17 @@ export class LookupComponent {
   // function for generating url from unit, indicator and period and returning http response
   getStatistics(indicator: string, intervalMovingAverage: string, orgUnit: string) {
     
-      
-       this.lookupService.getStatistics(this.indicator, this.intervalMovingAverage, this.orgUnit).subscribe(data => {
-        this.sharedService.data = data
-      });
-    
-    if(this.enableMovingAverage){
+       if(this.enableMovingAverage){
       this.sharedService.intervalMovingAverage = parseInt(this.intervalMovingAverage);
     }
     else{
       this.sharedService.intervalMovingAverage = 1;
+      this.intervalMovingAverage = "1";
     }
+       this.lookupService.getStatistics(this.indicator, this.intervalMovingAverage, this.orgUnit).subscribe(data => {
+        this.sharedService.data = data
+      });
+    
+   
   }
 }
