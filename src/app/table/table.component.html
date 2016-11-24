@@ -1,8 +1,8 @@
 <body>
 <table ngl-datatable [data]="data" trackByKey="rank" [loading]="loading" [(sort)]="sort" (sortChange)="onSort($event)"
        (onRowClick)="onRowClick($event)" [bordered]="border" class="slds-max-medium-table--stacked-horizontal">
-  <ngl-datatable-column heading="Date" key="date"></ngl-datatable-column>
-  <ngl-datatable-column heading="Value" key="value" cellClass="slds-truncate">
+  <ngl-datatable-column heading="Date - preview first 5 rows" key="date"></ngl-datatable-column>
+  <ngl-datatable-column heading="Value - preview first 5 rows" key="value" cellClass="slds-truncate">
   </ngl-datatable-column>
 
   <!-- Loading overlay -->

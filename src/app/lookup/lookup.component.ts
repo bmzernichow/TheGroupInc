@@ -101,7 +101,7 @@ export class LookupComponent {
        }
       }
       this.lookupService.getStatistics(this.indicator, timeperiod, this.orgUnit).subscribe(data => {
-        this.sharedService.data = data
+        this.sharedService.dataRaw = data
       });
     }
     if(this.enableMovingAverage){

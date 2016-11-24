@@ -9,114 +9,92 @@ import {SharedService} from '../shared.service';
 
 export class ChartComponent {
 
-  data: any;
-  data2: any;
-  options: any;
-  options2: any;
+  dataChartUpper: any;
+  dataChartLower: any;
+  emptyDataset = [];
+
+  _labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'October', 'November', 'December',];
+  
+  borderColorLastYear = '#565656';
+  borderColorCurrentYear = '#4bc0c0';
+  barColorLastYear = '#565656';
+  barColorCurrentYear = '#4bc0c0';
+
+  optionsUpper = {
+  responsive: true,
+  title: {
+    display: true,
+    text: 'Moving averages',
+    fontSize: 16
+    },
+  legend: {
+    display: false,
+    }
+  }
+
+  optionsLower = {
+  responsive: true,
+  title: {
+    display: true,
+    text: 'Raw data from DHIS2',
+    fontSize: 16
+    },
+  legend: {
+    display: true,
+    position: 'bottom'
+    }
+  }
 
   constructor(private sharedService: SharedService) {
-    this.data = {
-      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'October', 'November', 'December',],
-      datasets: [
-        {
-          label: 'Year',
-          data: [],
-          fill: false,
-          borderColor: '#565656'
-        },
-        {
-          label: 'Year',
-          data: [],
-          fill: false,
-          borderColor: '#00F'
-        }
-      ]
-    }
-    this.data2 = {
-      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'October', 'November', 'December',],
-      datasets: [
-        {
-          label: 'Year',
-          data: [],
-          fill: true,
-          borderColor: '#00F'
-        }
-      ]
-    }
-
-    this.options = {
-      responsive: true,
-      legend: {
-        position: 'top'
-      }
-    };
-    this.options2 = {
-      responsive: true,
-      legend: {
-        position: 'top'
-      }
-    };
+    this.dataChartUpper = this.getDatasetChart(this.emptyDataset, false);
+    this.dataChartLower = this.getDatasetChart(this.emptyDataset, false);
   }
 
-  getData(_date, _values, borderColor, _label){
+  // create dataset object which is consumed by chart component (html)
+  getDatasetChart(_data, _fill) {
     var d = new Date();
     var y = d.getFullYear();
     var m = d.getMonth();
-    return  {
-      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'October', 'November', 'December',],
-      datasets: [
-        {
-          label: y,
-          data: _values.slice(12,12+m),
-          fill: true,
-          // backgroundColor: backgroundColor,
-          borderColor: borderColor //'#4bc0c0'
-        }
-      ]
+
+    var sliceLastYear: any;
+    var sliceCurrentYear: any;
+
+
+    if (_data.length > 0) {
+      sliceLastYear = _data.slice(0,11);
+      sliceCurrentYear = _data.slice(12,12+m);
     }
-  }
-  getData2(_date, _values,borderColor){
-    var d = new Date();
-    var y = d.getFullYear();
-    var m = d.getMonth();
-    return  {
-      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'October', 'November', 'December',],
-      datasets: [
-        {
-          label: (y-1),
-          data: _values.slice(0,11),
-          fill: true,
-          // backgroundColor: '',
-          borderColor: '#565656' //'#4bc0c0'
-        },
-        {
-          label: y,
-          data: _values.slice(12,12+m),
-          fill: true,
-          // backgroundColor: '',
-          borderColor: borderColor  //'#4bc0c0'
-        }
-      ]
+    else {
+      sliceLastYear = _data
+      sliceCurrentYear = _data
     }
+
+      return {
+        labels: this._labels,
+        datasets: [
+          {
+            label: (y - 1),
+            data: sliceLastYear,
+            fill: _fill,
+            backgroundColor: this.barColorLastYear,
+            borderColor: this.borderColorLastYear
+          },
+          {
+            label: y,
+            data: sliceCurrentYear,
+            fill: _fill,
+            backgroundColor: this.barColorCurrentYear,
+            borderColor: this.borderColorCurrentYear
+          }
+        ]
+      }
   }
 
-  // get date and count values from shared.service.ts
+  // update chart arrays with values, including moving averages, from shared.service.ts
   getChartData() {
-    let _date = this.sharedService.getChartLabels(this.sharedService.dataMovingAverages, 'date');
-    let _values = this.sharedService.getChartLabels(this.sharedService.dataMovingAverages, 'value');
-    console.log('Date values: ' + _date);
-    console.log('Date values: ' + _values);
-
-    // this.data = this.getData();
-    this.data = this.getData2(_date, _values, '#00F');
-    this.getChartData2();
+    let _data1 = this.sharedService.parseToChart(this.sharedService.dataMovingAverages, 'value');
+    let _data2 = this.sharedService.parseToChart(this.sharedService.dataParsed, 'value');
+    this.dataChartUpper = this.getDatasetChart(_data1, false);
+    this.dataChartLower = this.getDatasetChart(_data2, true);
   }
-
-  getChartData2(){
-    let _date = this.sharedService.getChartLabels(this.sharedService.data2, 'date');
-    let _values = this.sharedService.getChartLabels(this.sharedService.data2, 'value');
-    // this.data = this.getData();
-    this.data2 = this.getData(_date,_values,'#00F', 'Average');
-  }
-
 }

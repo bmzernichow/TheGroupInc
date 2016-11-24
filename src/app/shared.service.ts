@@ -6,12 +6,13 @@ export class SharedService {
   constructor() {
   }
 
-  data: any;
-  data2 = [];
-  data3 = [];
+  dataRaw: any;
+  dataParsed = [];
+  dataChart = [];
   dataMovingAverages = [];
-  intervalMovingAverage = 5;
+  intervalMovingAverage = 3;
 
+  // iterates an object and returns values from key/ value pairs
   iterateId(objectToIterate, _key) {
     for (let key of Object.keys(objectToIterate)) {
       let value = objectToIterate[key];
@@ -21,68 +22,56 @@ export class SharedService {
     }
   }
 
-  parseLookupToTable() {
-
-    for (var i = 0; i < this.data.length; i++) {
-      this.data2.push({date: this.data[i][1], value: this.data[i][2]})
+  // parses raw data from DHIS API, extracts key/ value pairs of 'date' and 'value'
+  parseToTable() {
+    for (var i = 0; i < this.dataRaw.length; i++) {
+      this.dataParsed.push({date: this.dataRaw[i][1], value: this.dataRaw[i][2]})
     }
-    console.log(this.data2);
-    var d = this.data2.length;
-    return this.data2.slice(d-5, d);
+    var d = this.dataParsed.length;
+    return this.dataParsed.slice(d-5, d);
   }
 
-  getChartLabels(objectToIterate, _key) {
-    this.data3 = [];
+  // parse data to chart component array
+  parseToChart(objectToIterate, _key) {
+    this.dataChart = [];
     for (var i = 0; i < objectToIterate.length; i++) {
       for (let key of Object.keys(objectToIterate[i])) {
         let value = objectToIterate[i][key];
         if (key == _key) {
-          this.data3.push(value);
+          this.dataChart.push(value);
         }
       }
     }
-    return this.data3;
-
+    return this.dataChart;
   }
 
-  // function that calculates moving averages for an input array of objects
+  // calculates moving averages for an input array of objects
   getMovingAverage (data, key) {
-      
     var tempArray = [];
     var i = 0;
     var j = 0;
     var temp = 0;
-
     for (i; i <= data.length - this.intervalMovingAverage; i++) {
-
         for (j = 0; j < this.intervalMovingAverage; j++) {
           if (i+j < data.length) {
             temp += parseInt(this.iterateId(data[i+j], key)); 
           }
         }
         if (temp != 0) {
-          // i += this.intervalMovingAverage - 1;
-          console.log(temp);
           tempArray.push(Math.round(temp / j));
           temp = 0;
         }
     }
-    console.log(this.data.length);
-    console.log('Temparray length: ' + tempArray.length);
     this.parseToObject(data, this.intervalMovingAverage, tempArray);
   }
 
+  // helper/ parser method for moving averages for an input array of objects
   parseToObject (data, interval, tempArray) {
-
     var counter = (interval - 1) / 2;
-
     for (var i = 0; i < tempArray.length; i++) {
-
       var _date = this.iterateId(data[counter], 'date');
       this.dataMovingAverages.push({date: _date, value: tempArray[i]}); 
       counter ++;
     }
-    console.log('Parse function: ' + this.dataMovingAverages);
   }
-
 }
