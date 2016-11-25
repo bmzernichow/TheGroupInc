@@ -51,7 +51,7 @@ export class LookupService {
       var y = d.getFullYear();
       var m = d.getMonth();
       // the amount of extra needed datapoints to calculate moving average.  
-      var p = parseInt(intervalMovingAverage);
+      var p = Math.floor(parseInt(intervalMovingAverage)/2);
       // Making a string for the period in the format yyyymm for each month of from last year until current. 
       // Also adding p-1 extra months in front if this interfal
       for (var i = (m+12+p-1); i >= 0; i--){
