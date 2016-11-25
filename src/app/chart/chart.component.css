@@ -2,9 +2,9 @@ body {
   border: 1px solid;
   border-radius: 20px;
   border-color: white;
-  padding-top: 10px;
+  padding-top: 5px;
 }
 
-div.getChartData {
+div.upperChart {
   padding-bottom: 20px;
 }

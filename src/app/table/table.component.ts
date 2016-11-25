@@ -3,12 +3,11 @@ import {SharedService} from '../shared.service';
 import {INglDatatableSort, INglDatatableRowClick} from 'ng-lightning/ng-lightning';
 
 const DATA = [
-  {date: '-', value: '-'},
-  {date: '-', value: '-'},
-  {date: '-', value: '-'},
-  {date: '-', value: '-'},
-  {date: '-', value: '-'},
-  {date: '-', value: '-'},
+  {date: '-', value: '0'},
+  {date: '-', value: '0'},
+  {date: '-', value: '0'},
+  {date: '-', value: '0'},
+  {date: '-', value: '0'}
 ];
 
 @Component({
@@ -48,8 +47,8 @@ export class TableComponent {
 
   // fetch data to table
   getParsed() {
-    this.data = this.sharedService.parseLookupToTable();
-    this.sharedService.getMovingAverage(this.sharedService.data2, 'value');
+    this.data = this.sharedService.parseToTable();
+    this.sharedService.getMovingAverage(this.sharedService.dataParsed, 'value');
 
   }
 
