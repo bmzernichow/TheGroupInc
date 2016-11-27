@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {SharedService} from '../shared.service';
 
 @Component({
@@ -9,8 +9,8 @@ import {SharedService} from '../shared.service';
 
 export class ChartComponent {
 
-  dataChartUpper: any;
-  dataChartLower: any;
+  @Input() dataChartUpper: any;
+  @Input() dataChartLower: any;
   emptyDataset = [];
 
   _labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'October', 'November', 'December',];

@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {SharedService} from '../shared.service';
 import {INglDatatableSort, INglDatatableRowClick} from 'ng-lightning/ng-lightning';
 
@@ -21,7 +21,7 @@ export class TableComponent {
   constructor(private sharedService: SharedService) {
   }
 
-  data = DATA;
+  @Input() data: any;
   border = true;
 
   // Initial sort
@@ -49,7 +49,5 @@ export class TableComponent {
   getParsed() {
     this.data = this.sharedService.parseToTable();
     this.sharedService.getMovingAverage(this.sharedService.dataParsed, 'value');
-
   }
-
 }

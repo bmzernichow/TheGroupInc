@@ -7,9 +7,12 @@
   <lookup></lookup>
 </div>
 <div class="datatable">
-  <datatable></datatable>
+  <datatable [data]='updateData'></datatable>
 </div>
 <div class="chart">
-  <chart></chart>
+  <chart [dataChartUpper]='dataChartUpper' [dataChartLower]='dataChartLower'></chart>
+</div>
+<div class="tester">
+  <button type="button" (click)=tester() nglButton="brand">Tester</button>
 </div>
 </body>
