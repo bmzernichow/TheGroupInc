@@ -26,7 +26,8 @@ export class SharedService {
   getData(_data) {
     this.dataRaw = _data;
     this.dataTable = this.parseToTable();
-    this.dataMovingAverages = this.getMovingAverage(this.dataParsed);
+    var size = Math.floor(this.intervalMovingAverage/2);
+    this.dataMovingAverages = this.getMovingAverage(this.dataParsed,size);
   }
 
   // iterates an object and returns values from key/ value pairs
@@ -52,13 +53,17 @@ export class SharedService {
   // takes a array of parsed data ([[date,data], [date,data],...]), and
   // formats it into a desired set of only data, inserting null for missing dates
   // the data given must be ordered oldest -> newest
-  getDatasetWithNull(data){
+  getDatasetWithNull(data, size){
+    console.log(data);
     var objectToReturn = [];
     var lastYearMonth = parseInt(data[data.length-1]["date"]);
+    console.log("size");
+    console.log(size);
     var lastYear = Math.floor(lastYearMonth/100);
 
+
     //used to figure out how many months use from two years before lastYear
-    var size = Math.floor(this.intervalMovingAverage/2);
+    // var size = Math.floor(this.intervalMovingAverage/2);
     //find out where to start
     var firstYearMonth = 0;
     if(size == 0){
@@ -101,10 +106,10 @@ export class SharedService {
   //   input: [3,6,3,9,12,6]
   //     size = 3
   //     result: [null,4,6,8,9,null] 
-  getMovingAverage (data) {
+  getMovingAverage (data,size) {
     var arrayToReturn = [];
     //sample size
-    var size = Math.floor(this.intervalMovingAverage/2);
+    // var size = Math.floor(this.intervalMovingAverage/2);
 
     if(size == 0){
       return data;

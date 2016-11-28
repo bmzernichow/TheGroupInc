@@ -94,21 +94,21 @@ export class ChartComponent {
 
 // Cleanup?????
   // update chart arrays with values, including moving averages, from shared.service.ts
-  getChartData() {
-    var size = Math.floor(this.sharedService.intervalMovingAverage/2);
+  // getChartData() {
+  //   var size = Math.floor(this.sharedService.intervalMovingAverage/2);
 
-    var dataWithNull = this.sharedService.getDatasetWithNull(this.sharedService.dataParsed);
+  //   var dataWithNull = this.sharedService.getDatasetWithNull(this.sharedService.dataParsed);
 
-    let _data1 = this.sharedService.getMovingAverage(dataWithNull);
-    let _data2 = dataWithNull.slice(size,dataWithNull.length);
-    console.log(_data1);
+  //   let _data1 = this.sharedService.getMovingAverage(dataWithNull);
+  //   let _data2 = dataWithNull.slice(size,dataWithNull.length);
+  //   console.log(_data1);
 
-    this.dataChartUpper = this.getDatasetChart(_data1, false);
-    this.dataChartLower = this.getDatasetChart(_data2, true);
+  //   this.dataChartUpper = this.getDatasetChart(_data1, false);
+  //   this.dataChartLower = this.getDatasetChart(_data2, true);
 
-    //possibly unneeded
-    this.sharedService.dataMovingAverages = _data1;
+  //   //possibly unneeded
+  //   this.sharedService.dataMovingAverages = _data1;
     
-  }
+  // }
   // cleanup???
 }

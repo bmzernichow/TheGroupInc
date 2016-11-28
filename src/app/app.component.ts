@@ -40,20 +40,26 @@ export class AppComponent {
   getDataTableAndChart() {
     // this.chartComponent.getChartData();
     var size = Math.floor(this.sharedService.intervalMovingAverage/2);
-
-    var dataWithNull = this.sharedService.getDatasetWithNull(this.sharedService.dataParsed);
-
+    console.log("durr1");
+    console.log(this.sharedService.dataParsed);
+    var dataWithNull = this.sharedService.getDatasetWithNull(this.sharedService.dataParsed, size);
+    console.log("durr2");
     this.dataTable = this.sharedService.dataTable;
-
-    let _data1 = this.sharedService.getMovingAverage(dataWithNull);
+    console.log("durr3");
+    let _data1 = this.sharedService.getMovingAverage(dataWithNull, size);
+    console.log("durr4");
     let _data2 = dataWithNull.slice(size,dataWithNull.length);
+    console.log("durr5");
     console.log(_data1);
 
     this.dataChartUpper = this.chartComponent.getDatasetChart(_data1, false);
+    console.log("durr6");
     this.dataChartLower = this.chartComponent.getDatasetChart(_data2, true);
+    console.log("durr7");
 
     //possibly unneeded
     this.sharedService.dataMovingAverages = _data1;
+    console.log("durr8");
 
 
 
@@ -67,17 +73,29 @@ export class AppComponent {
   }
 
   // timer loop --> detects/ checks every 500ms if data is parsed to arrays
-  timerLoop() {
-      var timer = setInterval(() => {
-        if (this.sharedService.dataMovingAverages.length > 1) {
-          this.getDataTableAndChart();
-          clearInterval(timer);
-        }
-      },500);
-    }
+  // timerLoop() {
+  //   var timer = setInterval(() => {
+  //     if (this.sharedService.dataMovingAverages.length > 1) {
+  //       this.getDataTableAndChart();
+  //       clearInterval(timer);
+  //     }
+  //   },500);
+  // }
 
   getData() {
-    this.lookupComponent.getStatistics();
-    this.timerLoop();
-    }
+    var p = this.lookupComponent.getStatistics();
+    console.log("getStatistics end");
+    p.then(
+      ()=>{
+        console.log("app.component got data from server");
+        this.getDataTableAndChart();
+        console.log("app.component returned from calculations");
+      }
+    ).catch(
+      function(){
+
+      }
+    );
+    // this.timerLoop();
   }
+}
