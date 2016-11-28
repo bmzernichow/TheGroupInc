@@ -13,7 +13,7 @@ export class ChartComponent {
   @Input() dataChartLower: any;
   emptyDataset = [];
 
-  _labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'October', 'November', 'December',];
+  _labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December',];
   
   borderColorLastYear = '#565656';
   borderColorCurrentYear = '#4bc0c0';
@@ -53,13 +53,18 @@ export class ChartComponent {
     var y = d.getFullYear();
     var m = d.getMonth();
 
+    console.log("date,year,month:");
+    console.log(d);
+    console.log(y);
+    console.log(m);
+
     var sliceLastYear: any;
     var sliceCurrentYear: any;
 
 
     if (_data.length > 0) {
-      sliceLastYear = _data.slice(0,11);
-      sliceCurrentYear = _data.slice(12,12+m);
+      sliceLastYear = _data.slice(0,12);
+      sliceCurrentYear = _data.slice(12,12+m+1);
     }
     else {
       sliceLastYear = _data
@@ -86,4 +91,24 @@ export class ChartComponent {
         ]
       }
   }
+
+// Cleanup?????
+  // update chart arrays with values, including moving averages, from shared.service.ts
+  getChartData() {
+    var size = Math.floor(this.sharedService.intervalMovingAverage/2);
+
+    var dataWithNull = this.sharedService.getDatasetWithNull(this.sharedService.dataParsed);
+
+    let _data1 = this.sharedService.getMovingAverage(dataWithNull);
+    let _data2 = dataWithNull.slice(size,dataWithNull.length);
+    console.log(_data1);
+
+    this.dataChartUpper = this.getDatasetChart(_data1, false);
+    this.dataChartLower = this.getDatasetChart(_data2, true);
+
+    //possibly unneeded
+    this.sharedService.dataMovingAverages = _data1;
+    
+  }
+  // cleanup???
 }
