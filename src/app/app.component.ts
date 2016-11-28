@@ -49,16 +49,13 @@ export class AppComponent {
 
   // timer loop --> detects/ checks every 500ms if data is parsed to arrays
   timerLoop() {
-    var counter = 10;
-    for (var i = 0; i < counter; i++) {
-      setTimeout(() => {
+      var timer = setInterval(() => {
         if (this.sharedService.dataMovingAverages.length > 1) {
           this.getDataTableAndChart();
-          i = 10;
+          clearInterval(timer);
         }
       },500);
     }
-  }
 
   getData() {
     this.lookupComponent.getStatistics();
