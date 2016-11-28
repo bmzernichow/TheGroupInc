@@ -8,9 +8,17 @@ export class SharedService {
 
   dataRaw: any;
   dataParsed = [];
+  dataTable = [];
   dataChart = [];
   dataMovingAverages = [];
   intervalMovingAverage = 3;
+
+  // used by getStatistics() in lookup.component --> fills arrays
+  getData(_data) {
+    this.dataRaw = _data;
+    this.dataTable = this.parseToTable();
+    this.getMovingAverage(this.dataParsed, 'value');
+  }
 
   // iterates an object and returns values from key/ value pairs
   iterateId(objectToIterate, _key) {

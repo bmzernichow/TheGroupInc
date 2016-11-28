@@ -45,10 +45,7 @@ export class ChartComponent {
     }
   }
 
-  constructor(private sharedService: SharedService) {
-    this.dataChartUpper = this.getDatasetChart(this.emptyDataset, false);
-    this.dataChartLower = this.getDatasetChart(this.emptyDataset, false);
-  }
+  constructor(private sharedService: SharedService) { }
 
   // create dataset object which is consumed by chart component (html)
   getDatasetChart(_data, _fill) {
@@ -88,16 +85,5 @@ export class ChartComponent {
           }
         ]
       }
-  }
-
-  // update chart arrays with values, including moving averages, from shared.service.ts
-  getChartData() {
-    let _data1 = this.sharedService.parseToChart(this.sharedService.dataMovingAverages, 'value');
-    let _data2 = this.sharedService.parseToChart(this.sharedService.dataParsed, 'value');
-    this.dataChartUpper = this.getDatasetChart(_data1, false);
-    this.dataChartLower = this.getDatasetChart(_data2, true);
-    console.log("raw: "+ this.sharedService.dataRaw);
-    console.log("Parsed: "+ this.sharedService.dataParsed);
-    console.log("movingaverage: "+ this.sharedService.dataMovingAverages);
   }
 }

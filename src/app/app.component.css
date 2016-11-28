@@ -12,6 +12,7 @@
   width: 25%;
   float: left;
   padding: 10px;
+  padding-bottom: 85px;
 }
 
 .chart {
@@ -24,6 +25,10 @@
   width: 75%;
   float: right;
   padding: 10px;
+}
+
+div.getData {
+  padding-left: 16px;
 }
 
 h1 {

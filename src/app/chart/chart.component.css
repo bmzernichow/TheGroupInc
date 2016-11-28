@@ -2,7 +2,8 @@ body {
   border: 1px solid;
   border-radius: 20px;
   border-color: white;
-  padding-top: 5px;
+  padding-top: 10px;
+  padding-right: 10px;
 }
 
 div.upperChart {

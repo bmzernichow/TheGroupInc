@@ -33,7 +33,7 @@
 <div *ngIf="enableMovingAverage" class="intervalMovingAverage">
   <span nglDropdown [(open)]="open2">
     <button class="slds-button slds-button--neutral" nglDropdownTrigger>
-      <span class="slds-truncate">Select an interval for moving average</span>
+      <span class="slds-truncate">Moving average interval</span>
       <ngl-icon icon="down" type="default" size="x-small"></ngl-icon>
     </button>
     <div class="slds-dropdown slds-dropdown--left">
@@ -47,10 +47,6 @@
       </ul>
     </div>
   </span>
-</div>
-
-<div class="getStats">
-  <button type="button" (click)=getStatistics() nglButton="brand">Get statistics</button>
 </div>
 
 </body>

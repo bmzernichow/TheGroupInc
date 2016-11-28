@@ -2,14 +2,6 @@ import {Component, Input} from '@angular/core';
 import {SharedService} from '../shared.service';
 import {INglDatatableSort, INglDatatableRowClick} from 'ng-lightning/ng-lightning';
 
-const DATA = [
-  {date: '-', value: '0'},
-  {date: '-', value: '0'},
-  {date: '-', value: '0'},
-  {date: '-', value: '0'},
-  {date: '-', value: '0'}
-];
-
 @Component({
   selector: 'datatable',
   templateUrl: './table.component.html',
@@ -43,11 +35,5 @@ export class TableComponent {
 
   onRowClick($event: INglDatatableRowClick) {
     console.log('clicked row', $event.data);
-  }
-
-  // fetch data to table
-  getParsed() {
-    this.data = this.sharedService.parseToTable();
-    this.sharedService.getMovingAverage(this.sharedService.dataParsed, 'value');
   }
 }

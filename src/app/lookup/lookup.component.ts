@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, Output} from '@angular/core';
 import {LookupService} from './lookup.service'
 import {SharedService} from '../shared.service';
 import {Observable} from 'rxjs/Observable';
@@ -39,8 +39,11 @@ export class LookupComponent {
     {value: '5'}
   ];
 
+
   // function for generating url from unit, indicator and period and returning http response
-  getStatistics(indicator: string, intervalMovingAverage: string, orgUnit: string) {
+  getStatistics() {
+    console.log(this.orgUnit);
+
     if(this.enableMovingAverage){
       this.sharedService.intervalMovingAverage = parseInt(this.intervalMovingAverage);
     }
@@ -49,9 +52,8 @@ export class LookupComponent {
       this.intervalMovingAverage = "1";
     }
        this.lookupService.getStatistics(this.indicator, this.intervalMovingAverage, this.orgUnit).subscribe(data => {
-        this.sharedService.dataRaw = data
+        //this.sharedService.dataRaw = data
+        this.sharedService.getData(data)
       });
-    
-   
   }
 }
