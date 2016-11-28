@@ -38,9 +38,12 @@ export class AppComponent {
   }
 
   getDataTableAndChart() {
+    // this.chartComponent.getChartData();
     var size = Math.floor(this.sharedService.intervalMovingAverage/2);
 
     var dataWithNull = this.sharedService.getDatasetWithNull(this.sharedService.dataParsed);
+
+    this.dataTable = this.sharedService.dataTable;
 
     let _data1 = this.sharedService.getMovingAverage(dataWithNull);
     let _data2 = dataWithNull.slice(size,dataWithNull.length);

@@ -26,7 +26,7 @@ export class SharedService {
   getData(_data) {
     this.dataRaw = _data;
     this.dataTable = this.parseToTable();
-    this.getMovingAverage(this.dataParsed);
+    this.dataMovingAverages = this.getMovingAverage(this.dataParsed);
   }
 
   // iterates an object and returns values from key/ value pairs

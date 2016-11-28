@@ -54,7 +54,7 @@ export class LookupService {
       var p = Math.floor(parseInt(intervalMovingAverage)/2);
       // Making a string for the period in the format yyyymm for each month of from last year until current. 
       // Also adding p-1 extra months in front if this interfal
-      for (var i = (m+12+p-1); i >= 0; i--){
+      for (var i = (m+12+p); i >= 0; i--){
         //the p-1 extra months
         if(i>m+12){
           if(24+m-i+1<10){
