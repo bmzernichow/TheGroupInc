@@ -16,15 +16,15 @@ export class ChartComponent {
   _labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December',];
   
   borderColorLastYear = '#565656';
-  borderColorCurrentYear = '#4bc0c0';
+  borderColorCurrentYear = '#2f96b4';
   barColorLastYear = '#565656';
-  barColorCurrentYear = '#4bc0c0';
+  barColorCurrentYear = '#2f96b4';
 
   optionsUpper = {
   responsive: true,
   title: {
     display: true,
-    text: 'Moving averages',
+    text: 'MOVING AVERAGES',
     fontSize: 16
     },
   legend: {
@@ -36,7 +36,7 @@ export class ChartComponent {
   responsive: true,
   title: {
     display: true,
-    text: 'Raw data from DHIS2',
+    text: 'RAW DATA FROM DHIS2',
     fontSize: 16
     },
   legend: {

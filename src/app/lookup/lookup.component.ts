@@ -16,9 +16,7 @@ export class LookupComponent {
   orgUnit = '';
   valueIndicator: string = '';
   indicator = '';
-  open: boolean;
-  open2: boolean;
-  intervalMovingAverage: string;
+  intervalMovingAverage = '3';
   enableMovingAverage: boolean = true;
 
   constructor(private lookupService: LookupService, private sharedService: SharedService) {
@@ -33,12 +31,6 @@ export class LookupComponent {
   lookupIndicator = (query: string): Observable<any[]> => {
     return this.lookupService.getLookupIndicator(query);
   }
-  // items array for the periodMovingAverage menu
-  items2 = [
-    {value: '3'},
-    {value: '5'}
-  ];
-
   getStatistics() {
     if(this.enableMovingAverage){
       this.sharedService.intervalMovingAverage = parseInt(this.intervalMovingAverage);
