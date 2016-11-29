@@ -24,7 +24,7 @@ export class ChartComponent {
   responsive: true,
   title: {
     display: true,
-    text: 'Moving averages',
+    text: 'MOVING AVERAGES',
     fontSize: 16
     },
   legend: {
@@ -36,7 +36,7 @@ export class ChartComponent {
   responsive: true,
   title: {
     display: true,
-    text: 'Raw data from DHIS2',
+    text: 'RAW DATA FROM DHIS2',
     fontSize: 16
     },
   legend: {

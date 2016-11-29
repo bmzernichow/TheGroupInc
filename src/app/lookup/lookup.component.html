@@ -1,52 +1,40 @@
 <body>
 
 <div class="orgUnit">
+  <div class="slds-text-title--caps slds-m-bottom--small">Search for an organisation unit</div>
   <ngl-lookup [(value)]="valueOU" [lookup]="lookupOU" field="displayName" [(pick)]="orgUnit">
-    <template nglLookupLabel>Search for an organisation unit</template>
     <template nglLookupItem let-ctx>
       <div class="slds-media__body">
         <div class="slds-lookup__result-text">{{ctx.displayName}}</div>
-        <span class="slds-lookup__result-meta slds-text-body--small">ID: {{ctx.id}}</span>
       </div>
     </template>
   </ngl-lookup>
-  <div class="slds-text-title--caps slds-m-top--x-large slds-m-bottom--small"></div>
 </div>
 
 <div class="indicator">
+  <div class="slds-text-title--caps slds-m-bottom--small">Search for an indicator</div>  
   <ngl-lookup [(value)]="valueIndicator" [lookup]="lookupIndicator" field="displayName" [(pick)]="indicator">
-    <template nglLookupLabel>Search for an indicator</template>
     <template nglLookupItem let-ctx>
       <div class="slds-media__body">
         <div class="slds-lookup__result-text">{{ctx.displayName}}</div>
-        <span class="slds-lookup__result-meta slds-text-body--small">ID: {{ctx.id}}</span>
       </div>
     </template>
   </ngl-lookup>
-  <div class="slds-text-title--caps slds-m-top--x-large slds-m-bottom--small"></div>
 </div>
 
- <ngl-form-checkbox-toggle label="moving average" enabledText="Enabled" disabledText="Disabled" class="slds-m-top--small">
+<div class="toggle">
+  <div class="slds-text-title--caps slds-m-bottom--small">Moving average on/ off</div>    
+ <ngl-form-checkbox-toggle enabledText='' disabledText=''>
   <input nglFormControl type="checkbox" checked="" [(ngModel)]="enableMovingAverage" />
 </ngl-form-checkbox-toggle>
+</div>
 
-<div *ngIf="enableMovingAverage" class="intervalMovingAverage">
-  <span nglDropdown [(open)]="open2">
-    <button class="slds-button slds-button--neutral" nglDropdownTrigger>
-      <span class="slds-truncate">Moving average interval</span>
-      <ngl-icon icon="down" type="default" size="x-small"></ngl-icon>
-    </button>
-    <div class="slds-dropdown slds-dropdown--left">
-      <ul class="dropdown__list" role="menu">
-        <li class="slds-dropdown__item" *ngFor="let item of items2;">
-          <a role="menuitem" nglDropdownItem (click)="intervalMovingAverage = item.value; open2 = false;">
-            <p class="slds-truncate">{{item.value}}</p>
-            <ngl-icon [icon]="item.icon" type="default" size="x-small"></ngl-icon>
-          </a>
-        </li>
-      </ul>
-    </div>
-  </span>
+  <div class="slds-text-title--caps slds-m-bottom--small">Moving average interval</div>    
+<div *ngIf="enableMovingAverage">
+<div [(nglPick)]="intervalMovingAverage" nglPickActiveClass="slds-button--brand" class="slds-button-group" role="group">
+  <button type="button" nglButton="neutral" nglPickOption="3">3</button>
+  <button type="button" nglButton="neutral" nglPickOption="5">5</button>
+</div>
 </div>
 
 </body>
