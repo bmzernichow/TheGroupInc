@@ -53,11 +53,6 @@ export class ChartComponent {
     var y = d.getFullYear();
     var m = d.getMonth();
 
-    console.log("date,year,month:");
-    console.log(d);
-    console.log(y);
-    console.log(m);
-
     var sliceLastYear: any;
     var sliceCurrentYear: any;
 
@@ -71,44 +66,24 @@ export class ChartComponent {
       sliceCurrentYear = _data
     }
 
-      return {
-        labels: this._labels,
-        datasets: [
-          {
-            label: (y - 1),
-            data: sliceLastYear,
-            fill: _fill,
-            backgroundColor: this.barColorLastYear,
-            borderColor: this.borderColorLastYear
-          },
-          {
-            label: y,
-            data: sliceCurrentYear,
-            fill: _fill,
-            backgroundColor: this.barColorCurrentYear,
-            borderColor: this.borderColorCurrentYear
-          }
-        ]
-      }
+    return {
+      labels: this._labels,
+      datasets: [
+        {
+          label: (y - 1),
+          data: sliceLastYear,
+          fill: _fill,
+          backgroundColor: this.barColorLastYear,
+          borderColor: this.borderColorLastYear
+        },
+        {
+          label: y,
+          data: sliceCurrentYear,
+          fill: _fill,
+          backgroundColor: this.barColorCurrentYear,
+          borderColor: this.borderColorCurrentYear
+        }
+      ]
+    }
   }
-
-// Cleanup?????
-  // update chart arrays with values, including moving averages, from shared.service.ts
-  // getChartData() {
-  //   var size = Math.floor(this.sharedService.intervalMovingAverage/2);
-
-  //   var dataWithNull = this.sharedService.getDatasetWithNull(this.sharedService.dataParsed);
-
-  //   let _data1 = this.sharedService.getMovingAverage(dataWithNull);
-  //   let _data2 = dataWithNull.slice(size,dataWithNull.length);
-  //   console.log(_data1);
-
-  //   this.dataChartUpper = this.getDatasetChart(_data1, false);
-  //   this.dataChartLower = this.getDatasetChart(_data2, true);
-
-  //   //possibly unneeded
-  //   this.sharedService.dataMovingAverages = _data1;
-    
-  // }
-  // cleanup???
 }

@@ -33,14 +33,7 @@ export class TableComponent {
     });
   }
 
-  onRowClick($event: INglDatatableRowClick) {
-    console.log('clicked row', $event.data);
-  }
-
-  // Cleanup????
-  // fetch data to table
-  getParsed() {
-    this.data = this.sharedService.parseToTable();
-  }
-  // cleanup???
+  // onRowClick($event: INglDatatableRowClick) {
+  //   console.log('clicked row', $event.data);
+  // }
 }

@@ -2,32 +2,24 @@ import {Injectable} from '@angular/core';
 
 @Injectable()
 export class SharedService {
-  
-  constructor() {
-  }
-  //local values
+  //local variabls
   intervalMovingAverage;
 
   //array sets
-  dataRaw: any;
-
-
-  dataTable = []; //remove???
-
-
-
-
+  dataRaw: any;            //JSON fetched from server
   dataParsed = [];         //[[date,data], [date,data], [date,data],...]
-  dataChart = [];          // used in dataChartLower [data | null, data | null, data | null, ...] Beginning in january last year
-  dataMovingAverages = []; // used in dataChartUpper [data | null, data | null, data | null,...]
+  dataChartUpperSource = [];     // used in dataChartUpper [data | null, data | null, data | null,...]
+  dataChartLowerSource = [];     // used in dataChartLower [data | null, data | null, data | null, ...] Beginning in january last year
+  
+  tableInit = [
+    {date: '-', value: '0'},
+    {date: '-', value: '0'},
+    {date: '-', value: '0'},
+    {date: '-', value: '0'},
+    {date: '-', value: '0'}
+  ];
 
-
-  // used by getStatistics() in lookup.component --> fills arrays
-  getData(_data) {
-    this.dataRaw = _data;
-    this.dataTable = this.parseToTable();
-    var size = Math.floor(this.intervalMovingAverage/2);
-    this.dataMovingAverages = this.getMovingAverage(this.dataParsed,size);
+  constructor() {
   }
 
   // iterates an object and returns values from key/ value pairs
@@ -40,27 +32,73 @@ export class SharedService {
     }
   }
 
-  // parses raw data from DHIS API, extracts key/ value pairs of 'date' and 'value'
-  parseToTable() {
-    this.dataParsed = [];
-    for (var i = 0; i < this.dataRaw.length; i++) {
-      this.dataParsed.push({date: this.dataRaw[i][1], value: this.dataRaw[i][2]})
+ /**
+  * Returns the parsed data, only including the period and value
+  *
+  * @param  {[[id,period,value], [id,period,value], ... ]}, dataRaw
+  * @return {[[date: String,value: String], [date: String,value: String], ...]}
+  */
+
+  parseData(dataRaw){
+    let dataParsed = [];
+    for (var i = 0; i < dataRaw.length; i++) {
+      dataParsed.push({date: dataRaw[i][1], value: dataRaw[i][2]})
     }
-    var d = this.dataParsed.length;
-    return this.dataParsed.slice(d-5, d);
+    this.dataParsed = dataParsed;
+    return dataParsed;
   }
 
-  // takes a array of parsed data ([[date,data], [date,data],...]), and
-  // formats it into a desired set of only data, inserting null for missing dates
-  // the data given must be ordered oldest -> newest
+ /**
+  * Extracts the part to be shown in the table.component from the parsed data 
+  *
+  * @param  {[[String, String], [String, String],...]}, dataParsed
+  * @return {[[String, String], [String, String],...]}
+  */
+  getTableData(dataParsed) {
+    //fill table
+    let d = dataParsed.length;
+    return dataParsed.slice(d-5, d);
+  }
+
+ /**
+  * Generates the source data for chartUpper
+  *
+  * @param  {[Number | null, Number | null, ...]}, dataWithNull
+  * @param  {Number}, size
+  * @return {[Number | null, Number | null, ...]}
+  */
+
+  generateChartUpperSource(dataWithNull,size){
+    this.dataChartUpperSource = this.getMovingAverage(dataWithNull, size);
+    return this.dataChartUpperSource;
+  }
+
+ /**
+  * Generates the source data for chartLower
+  *
+  * @param  {[Number | null, Number | null, ...]}, dataWithNull
+  * @param  {Number}, size
+  * @return {[Number | null, Number | null, ...]}
+  */
+
+  generateChartLowerSource(dataWithNull,size){
+    this.dataChartLowerSource = dataWithNull.slice(size,dataWithNull.length);
+    return this.dataChartLowerSource;
+  }
+
+ /**
+  * Takes a array of parsed data ([[date,data], [date,data],...]), and
+  * formats it into a desired set of only data, inserting null for missing dates
+  * the data given must be ordered oldest -> newest
+  *
+  * @param  {[[String, String], [String, String],...]}, data
+  * @param  {Number}, size
+  * @return {[Number | null, Number | null, ...]}
+  */
   getDatasetWithNull(data, size){
-    console.log(data);
     var objectToReturn = [];
     var lastYearMonth = parseInt(data[data.length-1]["date"]);
-    console.log("size");
-    console.log(size);
     var lastYear = Math.floor(lastYearMonth/100);
-
 
     //used to figure out how many months use from two years before lastYear
     // var size = Math.floor(this.intervalMovingAverage/2);
@@ -100,12 +138,17 @@ export class SharedService {
     }
     return objectToReturn;
   }
-
-  // calculates moving averages for an input array of data
-  // sample:
-  //   input: [3,6,3,9,12,6]
-  //     size = 3
-  //     result: [null,4,6,8,9,null] 
+ /**
+  * Calculates moving averages for an input array of data
+  * Sample:
+  *   Input: [3,6,3,9,12,6]
+  *     Size = 3
+  *     Result: [null,4,6,8,9,null] 
+  *
+  * @param  {[Number | null, Number | null, ...]}, data
+  * @param  {Number}, size
+  * @return {[Number | null, Number | null, ...]}
+  */
   getMovingAverage (data,size) {
     var arrayToReturn = [];
     //sample size
@@ -135,15 +178,5 @@ export class SharedService {
       }
     }
     return arrayToReturn;
-  }
-
-  // helper/ parser method for moving averages for an input array of objects
-  parseToObject (data, interval, tempArray) {
-    var counter = (interval - 1) / 2;
-    for (var i = 0; i < tempArray.length; i++) {
-      var _date = this.iterateId(data[counter], 'date');
-      this.dataMovingAverages.push({date: _date, value: tempArray[i]}); 
-      counter ++;
-    }
   }
 }
