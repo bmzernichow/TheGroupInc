@@ -7,8 +7,8 @@ describe('webapp App', function() {
     page = new WebappPage();
   });
 
-  it('should display message saying app works', () => {
+  it('should display message saying DHIS2 Moving Average Statistics', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('app works!');
+    expect(page.getParagraphText()).toEqual('DHIS2 Moving Average Statistics');
   });
 });
