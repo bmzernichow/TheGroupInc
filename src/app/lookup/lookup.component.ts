@@ -1,7 +1,7 @@
 import {Component, Output} from '@angular/core';
 import {LookupService} from './lookup.service'
 import {SharedService} from '../shared.service';
-import {Observable} from 'rxjs/Observable';
+import {Observable} from 'rxjs/Rx';
 
 @Component({
   selector: 'lookup',
