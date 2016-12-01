@@ -74,8 +74,9 @@ export class AppComponent {
         this.fillCharts(dataParsed);
       }
     ).catch(
-      ()=>{
-
+      (errorMessage)=>{
+        console.log("Error caught: ");
+        console.log(errorMessage);
       }
     );
   }

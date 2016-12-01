@@ -45,11 +45,28 @@ export class LookupComponent {
         this.indicator,
         this.intervalMovingAverage,
         this.orgUnit
-      ).subscribe(data => {
-        this.sharedService.dataRaw = data;
-
-        resolve("resolved");
-      });
+      )
+      // .catch(this.handleError)
+      .catch(
+        error => {
+          reject(error);
+          return Observable.throw(null);
+        }
+      )
+      .subscribe(
+        data => {
+          if(data == null || data == []){
+            reject("no data recived");
+          }
+          else{
+            this.sharedService.dataRaw = data;
+            resolve("resolved");
+          }
+        },
+        error => {
+          reject(error);
+        }
+      )
     });
   }
 }
