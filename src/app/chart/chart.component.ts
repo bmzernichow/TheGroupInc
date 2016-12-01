@@ -20,19 +20,33 @@ export class ChartComponent {
   barColorLastYear = '#565656';
   barColorCurrentYear = '#2f96b4';
 
-  optionsUpper = {
+  optionsUpper = [{
   responsive: true,
-  title: {
-    display: true,
-    text: 'MOVING AVERAGES',
-    fontSize: 16
+    title: {
+      display: true,
+      text: 'MOVING AVERAGES',
+      fontSize: 16
+      },
+    legend: {
+      display: false,
+      }
     },
-  legend: {
-    display: false,
+    {
+    responsive: true,
+    title: {
+      display: true,
+      text: 'RAW DATA FROM DHIS2',
+      fontSize: 16
+      },
+    legend: {
+      display: false,
+      }
     }
-  }
+  ];
 
-  optionsLower = {
+  @Input() selectedOptionsUpper: any;
+
+  selectedOptionsLower = {
   responsive: true,
   title: {
     display: true,

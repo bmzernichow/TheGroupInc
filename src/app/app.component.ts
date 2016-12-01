@@ -20,6 +20,7 @@ export class AppComponent {
   dataTable: any;
   dataChartUpper: any;
   dataChartLower: any;
+  selectedOptionsUpper: any;
 
   tableInit = [
     {date: '-', value: '0'},
@@ -35,6 +36,7 @@ export class AppComponent {
     this.dataTable = this.tableInit;
     this.dataChartUpper = this.chartComponent.getDatasetChart(this.chartInit, false);
     this.dataChartLower = this.chartComponent.getDatasetChart(this.chartInit, false);
+    this.selectedOptionsUpper = this.chartComponent.optionsUpper[0];
   }
 
   fillCharts(dataParsed){
@@ -55,6 +57,13 @@ export class AppComponent {
     let p = this.lookupComponent.getStatistics();
     p.then(
       ()=>{
+
+        //update chartOptions
+        if(this.lookupComponent.enableMovingAverage)
+          this.selectedOptionsUpper = this.chartComponent.optionsUpper[0];
+        else
+          this.selectedOptionsUpper = this.chartComponent.optionsUpper[1];
+
         //parse the raw data
         let dataParsed = this.sharedService.parseData(this.sharedService.dataRaw);
         
