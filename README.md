@@ -31,7 +31,3 @@ Testing the app in development mode:
 - select moving average interval: e.g. 3
 
 - press: Get statistics
-
-- press: Fetch data to table
-
-- press: Fetch data to chart
